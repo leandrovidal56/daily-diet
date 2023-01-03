@@ -34,24 +34,6 @@ export const Line = styled.View`
     flex-direction: row;
 `
 
-export const SummaryCard = styled.View`
-    width: 327px;
-    height: 89px;
-    border-radius: 8px;
-    background: #EFF0F0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-`
-export const SummaryCardSmall = styled.View`
-    width: 157.5px;
-    height: 107px;
-    border-radius: 8px;
-    background: #E5F0DB;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-`
 
 export const Input = styled.View`
     width: 327px;

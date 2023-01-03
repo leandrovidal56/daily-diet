@@ -1,18 +1,28 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
-import { Container, Button, Line, Input, PercentageCard, SummaryCard, SummaryCardSmall } from './styles';
+import { Container, Line, Input, SummaryCardSmall } from './styles';
+import { PercentageCard } from '@components/PercentageCard'
+import { Button } from '@components/Button'
+import { SummaryCard } from '@components/SummaryCard'
+
 
 export function Home() {
   return (
     <Container>
-      <Text>Open up App.tsx to start working on your app!</Text>
       <StatusBar style="auto" />
-      <Button/>
-      <Line/>
-      <Input/>
       <PercentageCard/>
-      <SummaryCard/>
-      <SummaryCardSmall/>
+      <Button title='Nova refeição'/>
+      <SummaryCard title="22" subTitle='melhor sequência dentro da dieta'/>
+      <SummaryCard title="109" subTitle='refeições registradas'/>
+
+      <SummaryCard 
+        small
+        fail
+        title="99" 
+        subTitle='refeições dentro da dieta'
+      />
+      <Input/>
+      <Line/>
     </Container>
     
   );
