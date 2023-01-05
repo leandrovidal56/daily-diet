@@ -4,7 +4,7 @@ export const Container = styled.View`
     width: 327px;
     height: 102px;
     border-radius: 8px;
-    background: #E5F0DB;
+    background: ${({theme }) => theme.COLORS.GREEN_LIGHT};
     display: flex;
     align-items: center; 
     justify-content: center;

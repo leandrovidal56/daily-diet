@@ -7,17 +7,15 @@ export const Container = styled.View`
 `
 
 export const Title = styled.Text`
-    font-size: 32px;
+    font-size: ${({theme}) => theme.FONT_SIZE.XLG};
     line-height: 41.6px;
-    font-weight: 700;
-    color: black;
-
+    font-weight:${({ theme }) => theme.FONT_WEIGHT.BOLD};
+    color: ${({ theme}) => theme.COLORS.GRAY_7};
 `
 
 export const SubTitle = styled.Text`
-    font-size: 14px;
+    font-size: ${({ theme}) => theme.FONT_SIZE.SM};
+    font-weight: ${({ theme}) => theme.FONT_WEIGHT.NORMAL};
+    color: ${({theme}) => theme.COLORS.GRAY_2};
     line-height: 18.2px;
-    font-weight: 400;
-    color: #333638;
-
 `

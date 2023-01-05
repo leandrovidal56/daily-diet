@@ -1,3 +1,4 @@
+import theme from "@theme/index";
 import { TouchableOpacity } from "react-native";
 import styled from "styled-components/native";
 
@@ -12,22 +13,22 @@ export const Container = styled(TouchableOpacity)<Props>`
     height: ${({ small  }) => small ? 107 : 89}px;
     border-radius: 8px;
     margin-top: 12px;
-    background-color: ${({ fail }) => fail ? '#F4E6E7' : '#EFF0F0'};
+    background-color: ${({ fail }) => fail ? theme.COLORS.RED_LIGHT : theme.COLORS.GRAY_6};
     display: flex;
     align-items: center;
     justify-content: center;
 `
 
 export const Title = styled.Text`
-    font-size: 24px;
+    font-size: ${({ theme}) => theme.FONT_SIZE.XL};
+    font-weight: ${({ theme}) => theme.FONT_WEIGHT.BOLD};
+    color: ${({ theme}) => theme.COLORS.GRAY_1};
     line-height: 31.2px;
-    color: #1B1D1E;
-    font-weight: 700;
 `
 export const SubTitle = styled.Text`
-    font-size: 14px;
+    font-size: ${({ theme}) => theme.FONT_SIZE.XL};
     line-height: 18.2px;
-    color: #333638;
+    color: ${({ theme }) => theme.COLORS.GRAY_2};
     margin-top: 8px;
 
 `

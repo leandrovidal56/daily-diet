@@ -1,9 +1,10 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
-import { Container, Line, Input, SummaryCardSmall } from './styles';
+import { Container } from './styles';
 import { PercentageCard } from '@components/PercentageCard'
 import { Button } from '@components/Button'
 import { SummaryCard } from '@components/SummaryCard'
+import { Input } from '@components/Input';
+import { Line } from '@components/Line';
 
 
 export function Home() {
