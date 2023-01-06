@@ -10,7 +10,7 @@ export const Title = styled.Text`
     font-size: ${({theme}) => theme.FONT_SIZE.XLG};
     line-height: 41.6px;
     font-weight:${({ theme }) => theme.FONT_WEIGHT.BOLD};
-    color: ${({ theme}) => theme.COLORS.GRAY_7};
+    color: ${({ theme}) => theme.COLORS.GRAY_1};
 `
 
 export const SubTitle = styled.Text`

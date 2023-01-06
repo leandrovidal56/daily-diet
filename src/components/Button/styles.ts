@@ -8,6 +8,7 @@ export const Container = styled.View`
     display: flex;
     align-items: center;
     justify-content: center;
+    margin-bottom: 36px;
 `
 export const Title = styled.Text`
     font-size: ${({theme}) => theme.FONT_SIZE.SM};
