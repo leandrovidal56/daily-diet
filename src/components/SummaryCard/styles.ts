@@ -6,6 +6,7 @@ type Props = {
     background?: string;
     small?: boolean;
     fail?: boolean;
+    success?: boolean;
 }
 
 export const Container = styled(TouchableOpacity)<Props>`
@@ -13,10 +14,11 @@ export const Container = styled(TouchableOpacity)<Props>`
     height: ${({ small  }) => small ? 107 : 89}px;
     border-radius: 8px;
     margin-top: 12px;
-    background-color: ${({ fail }) => fail ? theme.COLORS.RED_LIGHT : theme.COLORS.GRAY_6};
+    background-color: ${({ background }) => background ? background : theme.COLORS.GRAY_6};
     display: flex;
     align-items: center;
     justify-content: center;
+    
 `
 
 export const Title = styled.Text`

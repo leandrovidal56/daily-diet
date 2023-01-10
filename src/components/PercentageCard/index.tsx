@@ -1,12 +1,18 @@
 import { Text } from '@components/Text';
+import { TouchableOpacityProps } from 'react-native';
 import {Container} from './styles';
 
-export function PercentageCard() {
+type Props = TouchableOpacityProps & {
+    title: string;
+    subTitle?: string;
+}
+
+export function PercentageCard({title, subTitle}: Props) {
     return (
         <Container>
             <Text
-                title='90,86%'
-                subTitle='das refeições dentro da dieta'
+                title={title}
+                subTitle={subTitle}
             />
         </Container>
 

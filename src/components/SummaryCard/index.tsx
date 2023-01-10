@@ -7,14 +7,17 @@ type Props = TouchableOpacityProps &{
     title: string;
     subTitle?: string;
     fail?: boolean;
+    success?: boolean;
     small?: boolean;
+    background?: string;
 
 }
 
-export function SummaryCard({title, subTitle, fail, small}: Props) {
+export function SummaryCard({title, subTitle, fail, background, small}: Props) {
     return (
         <Container
             fail={fail}
+            background={background}
             small={small}
         >
             <TextCard
