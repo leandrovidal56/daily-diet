@@ -1,7 +1,12 @@
 import styled from "styled-components/native";
 
-export const Container = styled.View`
-    width: 327px;
+type Props = {
+    small?: boolean;
+
+}
+
+export const Container = styled.View<Props>`
+    width: ${({ small  }) => small ? 191 : 327}px;
     height: 50px;
     border-radius: 6px;
     background: ${({ theme }) => theme.COLORS.GRAY_2};

@@ -3,11 +3,12 @@ import {Container, Title} from './styles'
 
 type Props = TouchableOpacityProps &{
     title: string,
+    small?: boolean,
 }
 
-export function Button({title}: Props){
+export function Button({title, small}: Props){
     return (
-        <Container>
+        <Container small={small}>
             <Title>{title}</Title>
         </Container>
     )
