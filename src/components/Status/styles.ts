@@ -11,9 +11,9 @@ export const Container = styled.View`
     margin-top: 30px;
 `
 export const ButtonRow = styled.View<Props>`
-    width: 159.5px;
-    height: 50px;
-    border-radius: 6px;
+    width: 144px;
+    height: 34px;
+    border-radius: 20px;
     margin-top: 8px;
     background-color: ${({ good, theme}) => good ? theme.COLORS.GRAY_6 : theme.COLORS.RED_MID};
     display: flex;
@@ -23,17 +23,11 @@ export const ButtonRow = styled.View<Props>`
 `
 export const Title = styled.Text`
     font-size: ${({theme}) => theme.FONT_SIZE.SM}px;
-    font-weight: ${({theme}) => theme.FONT_WEIGHT.BOLD};
+    font-weight: ${({theme}) => theme.FONT_WEIGHT.NORMAL};
     line-height: 18.2px;
     color: ${({theme }) => theme.COLORS.GRAY_1};
 `
 
-export const Row = styled.View`
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    width: 327px;
-`
 export const Marker = styled.View<Props>`
     width: 8px;
     height: 8px;

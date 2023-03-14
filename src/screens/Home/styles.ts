@@ -8,7 +8,7 @@ export const Container = styled(SafeAreaView)`
 
 `
 export const Text = styled.Text`
-    font-size: ${({theme}) => theme.FONT_SIZE.MD};
+    font-size: ${({theme}) => theme.FONT_SIZE.MD}px;
     line-height: 41.6px;
     font-weight:${({ theme }) => theme.FONT_WEIGHT.NORMAL};
     color: ${({ theme}) => theme.COLORS.GRAY_1};

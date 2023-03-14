@@ -22,13 +22,13 @@ export const Container = styled(TouchableOpacity)<Props>`
 `
 
 export const Title = styled.Text`
-    font-size: ${({ theme}) => theme.FONT_SIZE.XL};
+    font-size: ${({ theme}) => theme.FONT_SIZE.XL}px;
     font-weight: ${({ theme}) => theme.FONT_WEIGHT.BOLD};
     color: ${({ theme}) => theme.COLORS.GRAY_1};
     line-height: 31.2px;
 `
 export const SubTitle = styled.Text`
-    font-size: ${({ theme}) => theme.FONT_SIZE.XL};
+    font-size: ${({ theme}) => theme.FONT_SIZE.XL}px;
     line-height: 18.2px;
     color: ${({ theme }) => theme.COLORS.GRAY_2};
     margin-top: 8px;

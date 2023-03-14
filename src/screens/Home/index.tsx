@@ -13,7 +13,11 @@ export function Home() {
     <Container>
       <Header/>
       <StatusBar style="auto" />
-      <PercentageCard />
+      <PercentageCard
+      title='90,86%'
+      subTitle='das refeições dentro da dieta'
+      
+       />
       <Text>Refeições</Text>
       <Button title='Nova refeição'/>
       <Line/>

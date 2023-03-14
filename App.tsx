@@ -5,6 +5,8 @@ import { Statistic } from '@screens/Statistics';
 import { NewEat } from '@screens/NewEat';
 import { FeedBack } from '@screens/FeedBack';
 import { FeedBackBad } from '@screens/FeedBackBad';
+import { Eat } from '@screens/Eat';
+import { EditEat } from '@screens/EditEat';
 
 export default function App() {
   return (  
@@ -13,7 +15,9 @@ export default function App() {
       {/* <Statistic /> */}
       {/* <NewEat /> */}
       {/* <FeedBack/> */}
-      <FeedBackBad/>
+      {/* <FeedBackBad/> */}
+      {/* <Eat/> */}
+      <EditEat/>
     </ThemeProvider>
   );
 }
