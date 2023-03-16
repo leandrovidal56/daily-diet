@@ -1,4 +1,5 @@
 import theme from "@theme/index";
+import { TouchableOpacity } from "react-native";
 import styled from "styled-components/native";
 
 type Props = {
@@ -10,7 +11,7 @@ type Props = {
     
 }
 
-export const Container = styled.View<Props>`
+export const Container = styled(TouchableOpacity)<Props>`
     width: ${({ small  }) => small ? 191 : 327}px;
     height: 50px;
     border-radius: 6px;

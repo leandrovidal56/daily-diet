@@ -3,7 +3,7 @@ import { SummaryCard } from "@components/SummaryCard";
 import { Text } from "@components/Text";
 import { Container, Content, Percentage, Row } from "./styles";
 
-export function Statistic(){
+export function Statistics(){
     return (
         <Container>
             <Percentage>

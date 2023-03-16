@@ -1,5 +1,7 @@
 import { SafeAreaView } from 'react-native-safe-area-context';
 import styled from "styled-components/native";
+import { ArrowLeft } from "phosphor-react-native";
+import { TouchableOpacity } from 'react-native';
 
 export const Container = styled(SafeAreaView)`
     flex: 1;
@@ -12,9 +14,10 @@ export const Header = styled.View`
     width: 100%;
     height: 15%;
     background: ${({theme }) => theme.COLORS.GREEN_LIGHT};
-    justify-content: center;
     align-items: center;
     padding-top: 30px;
+    padding-left: 24px;
+    flex-direction: row;
 `
 export const Text = styled.Text`
     font-size: ${({theme}) => theme.FONT_SIZE.LG}px;
@@ -33,3 +36,16 @@ export const Row = styled.View`
     align-items: center;
     width: 327px;
 `
+
+export const BackButton = styled.TouchableOpacity`
+    width: 32px;
+    height: 32px;
+    margin-right: 82px;
+`
+
+export const BackIcon = styled(ArrowLeft).attrs(({ theme}) => ({
+    size: 32,
+    color: theme.COLORS.GRAY_1
+}))`
+
+`;

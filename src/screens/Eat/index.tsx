@@ -1,11 +1,17 @@
 import { Button } from "@components/Button";
 import { Input } from "@components/Input";
 import { Status } from "@components/Status";
+import { useNavigation } from "@react-navigation/native";
 
 
 import { Container, Content, Date, DateText, Header, HeaderText, Row, Text, Title  } from "./styles";
 
 export function Eat(){
+    const navigation = useNavigation();
+
+    function handleEditEat(){
+      navigation.navigate('EditEat')
+    }
     return (
         <Container>
             <Header>
@@ -28,6 +34,7 @@ export function Eat(){
                 borderColor="#1B1D1E"
                 title="Excluir refeição" 
                 textColor="#1B1D1E"
+                onPress={handleEditEat}
             />
             
 

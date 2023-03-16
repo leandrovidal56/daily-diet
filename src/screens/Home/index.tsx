@@ -6,9 +6,16 @@ import { SummaryCard } from '@components/SummaryCard'
 import { Input } from '@components/Input';
 import { Line } from '@components/Line';
 import { Header } from '@components/Header';
+import { useNavigation } from '@react-navigation/native';
 
 
 export function Home() {
+
+  const navigation = useNavigation();
+
+  function handleNewEat(){
+    navigation.navigate('NewEat')
+  }
   return (
     <Container>
       <Header/>
@@ -19,7 +26,7 @@ export function Home() {
       
        />
       <Text>Refeições</Text>
-      <Button title='Nova refeição'/>
+      <Button title='Nova refeição' onPress={ handleNewEat}/>
       <Line/>
       <Line/>
       <Line/>
