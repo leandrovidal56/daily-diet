@@ -1,3 +1,4 @@
+import { TextInput } from "react-native";
 import { TouchableOpacity } from "react-native";
 import styled from "styled-components/native";
 
@@ -10,7 +11,7 @@ export const Container = styled.View`
     flex-direction: column;
     margin-top: 24px;
 `
-export const Content = styled(TouchableOpacity)<Props>`
+export const Content = styled(TextInput)<Props>`
     width: ${({ small  }) => small ? 153.5 : 327}px;
     height:  ${({ large  }) => large ? 120 : 48}px;
     border-radius: 6px;

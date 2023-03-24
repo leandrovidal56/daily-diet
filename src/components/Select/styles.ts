@@ -1,7 +1,10 @@
+import theme from "@theme/index";
+import { TouchableOpacity } from "react-native";
 import styled from "styled-components/native";
 
 type Props = { 
     good?: boolean;
+    status?: boolean;
 }
 
 export const Container = styled.View`
@@ -10,12 +13,20 @@ export const Container = styled.View`
     justify-content: center;
     margin-top: 30px;
 `
-export const ButtonRow = styled.View<Props>`
+export const ButtonRow = styled(TouchableOpacity)<Props>`
     width: 159.5px;
     height: 50px;
     border-radius: 6px;
     margin-top: 8px;
-    background-color: ${({ good, theme}) => good ? theme.COLORS.GRAY_6 : theme.COLORS.RED_MID};
+    background-color: ${({ status, theme }) =>
+  status
+    ? theme.COLORS.GREEN_LIGHT
+    : status === null
+    ? theme.COLORS.GRAY_6
+    : theme.COLORS.RED_MID};
+        
+    
+     
     display: flex;
     align-items: center;
     justify-content: center;

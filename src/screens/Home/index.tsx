@@ -7,6 +7,7 @@ import { Input } from '@components/Input';
 import { Line } from '@components/Line';
 import { Header } from '@components/Header';
 import { useNavigation } from '@react-navigation/native';
+import { useState } from 'react';
 
 
 export function Home() {
@@ -15,7 +16,9 @@ export function Home() {
 
   function handleNewEat(){
     navigation.navigate('NewEat')
+
   }
+
   return (
     <Container>
       <Header/>
