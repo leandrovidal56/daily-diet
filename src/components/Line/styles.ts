@@ -1,10 +1,11 @@
+import { TouchableOpacity } from "react-native";
 import styled from "styled-components/native";
 
 type Props = { 
     good?: boolean;
 }
 
-export const Container = styled.View`
+export const Container = styled(TouchableOpacity)`
     width: 327px;
     height: 49px;
     border-radius: 6px;

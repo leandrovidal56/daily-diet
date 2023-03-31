@@ -1,12 +1,21 @@
 import { PercentageCard } from "@components/PercentageCard";
 import { SummaryCard } from "@components/SummaryCard";
 import { Text } from "@components/Text";
-import { Container, Content, Percentage, Row } from "./styles";
+import { useNavigation } from "@react-navigation/native";
+import { BackIcon } from "@screens/NewEat/styles";
+import { BackButton, Container, Content, Percentage, Row } from "./styles";
 
 export function Statistics(){
+    const navigation = useNavigation();
+    function handleGoBack(){
+        navigation.goBack()
+      }
     return (
         <Container>
             <Percentage>
+            <BackButton onPress={handleGoBack}>
+                <BackIcon  />
+              </BackButton>
                 <Text
                     title="90,86%"
                     subTitle="das refeições dentro da dieta"

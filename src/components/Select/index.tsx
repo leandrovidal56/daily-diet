@@ -8,7 +8,6 @@ type Props = TouchableOpacityProps &{
 }
 
 export function Select({title, diet, setDiet, ...rest}: Props){
-    console.log(diet, 'take diet')
     return (
         <Container>
             <Title>Está dentro da dieta?</Title>

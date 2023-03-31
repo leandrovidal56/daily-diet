@@ -2,39 +2,55 @@ import { Button } from "@components/Button";
 import { Input } from "@components/Input";
 import { Status } from "@components/Status";
 import { useNavigation } from "@react-navigation/native";
+import { BackButton, BackIcon } from "@screens/NewEat/styles";
+import { eatDeleteByUser } from "@storage/user/userDeleteEat";
 
 
 import { Container, Content, Date, DateText, Header, HeaderText, Row, Text, Title  } from "./styles";
 
-export function Eat(){
+export function Eat({route}){
     const navigation = useNavigation();
 
+    console.log(route, 'take routes')
+    console.log(route.params, 'take routes1')
+
     function handleEditEat(){
-      navigation.navigate('EditEat')
+      navigation.navigate('EditEat', route.params)
     }
+    async function  handleDeleteEat(){
+      await eatDeleteByUser(route.params)
+    //   navigation.navigate('Home')
+    }
+    function handleGoBack(){
+        navigation.goBack()
+      }
     return (
         <Container>
             <Header>
+            <BackButton onPress={handleGoBack}>
+                <BackIcon  />
+              </BackButton>
                 <HeaderText>Refeição</HeaderText>
             </Header>
             <Content>
-                <Title>Sanduíche</Title>
+                <Title>{route.params.eat}</Title>
                 <Text>
-                    Sanduíche de pão integral com atum e 
-                    salada de alface e tomate
+                    {route.params.description}
+                    {/* Sanduíche de pão integral com atum e 
+                    salada de alface e tomate */}
                 </Text>
                 <Date>Data e hora</Date>
-                <DateText>12/08/2022 às 16:00</DateText>
-                <Status title="dentro da dieta" good/>
+                <DateText>{route.params.date} às {route.params.time}</DateText>
+                <Status title="dentro da dieta" good={route.params.diet}/>
             </Content>
 
-            <Button title="Editar refeição" marginBottom={9} />
+            <Button title="Editar refeição" marginBottom={9} onPress={handleEditEat} />
             <Button
                 background="#ffffff"
                 borderColor="#1B1D1E"
                 title="Excluir refeição" 
                 textColor="#1B1D1E"
-                onPress={handleEditEat}
+                onPress={handleDeleteEat}
             />
             
 

@@ -1,108 +1,74 @@
 import React, { useState } from "react";
 import { Container, Content, ViewCalendarCenter, ViewCalendar, Text } from "./styles";
-import {Calendar} from 'react-native-calendars';
-import { Alert, Modal, Platform, TouchableOpacityProps } from "react-native";
+import {  TouchableOpacityProps } from "react-native";
 import DateTimePicker from '@react-native-community/datetimepicker';
-import { Button } from "@components/Button";
 
 type Props = TouchableOpacityProps &{
-  setDate?: string,
   teste?: string,
   setTime?: any,
+  exportDate?: any,
+  dateValue?: any, 
 }
 
 
-export function DateCalendar({setDate,teste, setTime}:Props) {
-  const [open, setOpen] = useState(false);
-  const [selected, setSelected] = useState('');
-  const [date1, setDate1] = useState(new Date());
-  // const [mode, setMode] = useState('date');
-  const [mode, setMode] = useState(teste);
-  const [show, setShow] = useState(false);
+export function DateCalendar({teste, setTime, exportDate, dateValue}:Props) {
 
-  const onChange = (event: any, selectedDate) => {
-    if(mode === 'time') {
-      const currentDate = selectedDate.getHours();
-      const currentMinutes = selectedDate.getMinutes();
-      const hours = `${currentDate}:${currentMinutes}`
-     return setTime(hours)
+
+  // const [date, setDate] = useState(new Date());
+  const [date, setDate] = useState(dateValue);
+  const [mode, setMode] = useState(teste);
+
+  const onChange = (event, selectedDate: any) => {
+    console.log(dateValue, 'pegar o que está vindo')
+    const currentDate = selectedDate || date;
+
+    console.log(currentDate, 'currentDate')
+    console.log(selectedDate, 'selectedDate')
+    let tempDate = new Date(currentDate)
+    console.log(tempDate, 'teste final')
+    if( mode === 'date'){
+      let fDate = tempDate.getDate() + '/' + (tempDate.getMonth() +1) + '/' + tempDate.getFullYear()
+      console.log(fDate, 'take fdate')
+      console.log(currentDate, 'take current Date')
+      
+      exportDate(fDate)
+      setDate(currentDate);
     }
-    const currentDate = selectedDate;
-    console.log(currentDate, 'melhor forma')
-    setShow(false);
-    setDate1(currentDate);
-    setDate(currentDate)
-  };
-  const showMode = (currentMode) => {
-    if (Platform.OS === 'android') {
-      setShow(false);
-      // for iOS, add a button that closes the picker
+
+    if( mode === 'time'){
+      if(tempDate.getMinutes() < 10){
+        console.log('foi') 
+        let formatMinutes = `${ "0"+(tempDate.getMinutes())}`
+        let fTime = `${tempDate.getHours()}:${formatMinutes}`;
+        setTime(fTime)
+      } else if(tempDate.getHours()< 10){
+        let formatHours = `${ "0"+(tempDate.getHours())}`
+        let fTime = `${tempDate.getHours()}:${formatHours}`;
+        setTime(fTime)
+
+      }
+      else{
+        let fTime = `${tempDate.getHours()}:${tempDate.getMinutes()}`;
+        setTime(fTime)
+      }
     }
-    setMode(currentMode);
+
+    setDate(currentDate);
   };
 
     return (
       <Container onPress={() => setOpen(true)} >
-      {/* <Button small onPress={showDatepicker} title="Show date picker!" />
-      <Button small onPress={showTimepicker} title="Show time picker!" /> */}
       <Text>Data</Text>
-  
        <Content>
        <DateTimePicker
           testID="dateTimePicker"
-          value={date1}
+          value={date}
           mode={mode}
           is24Hour={true}
           onChange={onChange}
         />
        </Content>
-
     </Container>
     )
 }
 
-
-      {/* <Text>Data</Text>
-      <Content onPress={() => setOpen(true)}>
-      <Modal
-        animationType="slide"
-        visible={open}
-        style={{ flex: 1, 
-          alignContent: 'center', 
-          justifyContent: 'center',
-          marginTop: 50
-          
-        }}
-      >
-        <ViewCalendar>
-          <ViewCalendarCenter>
-            <Calendar
-              style={{
-                borderWidth: 1,
-                borderColor: 'gray',
-              }}
-              onDayPress={day => {
-                setSelected(day.dateString);
-                setDate(day.dateString );
-                Alert.alert('Data selecionada', 'Desejar prosseguir com essa data?', 
-                [
-                  {
-                    text: 'Sim',
-                    onPress: () => setOpen(false)
-
-                  },
-                  {
-                    text: 'Não',
-                    style: 'cancel',
-                  },
-                ])
-              }}
-              markedDates={{
-                [selected]: {selected: true, disableTouchEvent: true, selectedColor: 'green'}
-              }}
-            /> 
-          </ViewCalendarCenter>
-        </ViewCalendar>
-      </Modal>
-      <Text>{selected}</Text> 
-    // </Content> */}

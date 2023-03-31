@@ -19,27 +19,30 @@ export function NewEat(){
   const [eat, setEat] = useState('')
   const [eatDescription, setEatDescription] = useState('')
   const [diet, setDiet ] = useState(null)
-  const [date, setDate] = useState('')
+  const [date, setDate] = useState(new Date())
   const [time, setTime] = useState('')
   const navigation = useNavigation();
-
+console.log(date, 'take data first')
 
   async function handleFeedBack(){
-    eatAddByUser(eat, eatDescription, diet, date)
-    // navigation.navigate('FeedBack')
     // AsyncStorage.clear()
+    eatAddByUser(eat, eatDescription, diet, date, time)
+    setEat('')
+    setEatDescription('')
+    setDiet(null)
+    
+    setDate(new Date())
+    console.log(date, 'take date inside function')
+    navigation.navigate('FeedBack')
   }
   
   function handleGoBack(){
-    // navigation.goBack()
+    navigation.goBack()
+    // AsyncStorage.clear()
     eatsGetAll()
   }
-    console.log(time, 'take time in first screen')
-  
-  // console.log(date, 'take date in first screen')
-  // useEffect(() => {
-  // },[time])
-  
+
+  console.log(date, 'teste')
     return (
         <Container>
             <Header>
@@ -48,20 +51,26 @@ export function NewEat(){
               </BackButton>
                 <Text>Nova refeição</Text>
             </Header>
-          
             <Content>
-                <Input title="Nome" onChangeText={setEat}/>
-                <Input title="Descrição" large onChangeText={setEatDescription}/>
+                <Input title="Nome"  value={eat} onChangeText={(text) => setEat(text)}/>
+                <Input title="Descrição" large value={eatDescription} onChangeText={(text) => setEatDescription(text)} />
                 <Row>
-                    <DateCalendar teste="date"  setDate={setDate} />
-                    <DateCalendar teste="time"  setTime={setTime} />
-                    {/* <TimeCalendar setTime={setTime} /> */}
-                    {/* <Input title="Hora" small /> */}
+                    <DateCalendar 
+                     dateValue={date}
+                      teste="date"  
+                       setTime={setTime}
+                       exportDate={setDate}
+                    />
+                    <DateCalendar 
+                    dateValue={date}
+                    teste="time"
+                       setTime={setTime}
+                       exportDate={setDate}
+                     />
                 </Row>
                 <Select diet={diet} setDiet={setDiet} />
             </Content>
             <Button title="Cadastrar refeição"  onPress={handleFeedBack}/>
-
         </Container>
     )
 }

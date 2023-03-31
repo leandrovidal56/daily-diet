@@ -13,6 +13,12 @@ export const Percentage = styled.View`
     justify-content: center;
     margin-top: 50px;
 `
+export const BackButton = styled.TouchableOpacity`
+    width: 32px;
+    height: 32px;
+    margin-right: 82px;
+`
+
 export const Content = styled.View`
     height: 80%;
     border-radius: 20px;

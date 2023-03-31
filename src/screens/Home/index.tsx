@@ -6,18 +6,35 @@ import { SummaryCard } from '@components/SummaryCard'
 import { Input } from '@components/Input';
 import { Line } from '@components/Line';
 import { Header } from '@components/Header';
-import { useNavigation } from '@react-navigation/native';
-import { useState } from 'react';
+import { useFocusEffect, useNavigation } from '@react-navigation/native';
+import { useCallback, useState } from 'react';
+import { eatsGetAll } from '@storage/user/userGetEat';
+import { FlatList } from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 
 export function Home() {
-
+const [eats, setEats] = useState(['teste'])
   const navigation = useNavigation();
 
   function handleNewEat(){
     navigation.navigate('NewEat')
+    // AsyncStorage.clear()
+    // eatsGetAll()
 
   }
+  async function fetchEatAll() {
+    const takeEat = await eatsGetAll()
+    console.log(takeEat, 'funcionou')
+    
+
+    console.log(takeEat.length, 'funcionou')
+    setEats(takeEat)
+  }
+
+  useFocusEffect(useCallback(() => {
+    fetchEatAll();
+  },[eatsGetAll]))
 
   return (
     <Container>
@@ -30,24 +47,32 @@ export function Home() {
        />
       <Text>Refeições</Text>
       <Button title='Nova refeição' onPress={ handleNewEat}/>
-      <Line/>
-      <Line/>
-      <Line/>
-      <Line/>
-      <Line/>
-      <Line/>
-      <Line/>
-      <Line/>
+      <FlatList
+      data={eats}
+      keyExtractor={item => item}
+      renderItem={({ item}) => (
+        <Line
+          item={item}
+          date={item.date}
+          hour={item.time}
+          title={item.eat}
+          diet={item.diet}
+          description={item.description}
 
-      {/* <SummaryCard title="22" subTitle='melhor sequência dentro da dieta'/>
-      <SummaryCard title="109" subTitle='refeições registradas'/>
-      <SummaryCard 
-        small
-        fail
-        title="99" 
-        subTitle='refeições dentro da dieta'
         />
-        <Input/> */}
+        // item.diet
+        // item.eat
+        // console.log(item)
+      )}
+      />
+    
+      {/* <Line/>
+      <Line/>
+      <Line/>
+      <Line/>
+      <Line/>
+      <Line/>
+      <Line/> */}
     </Container>
     
   );

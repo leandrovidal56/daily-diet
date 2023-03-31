@@ -11,6 +11,7 @@ export async function eatsGetAll() {
         const eats: string[] = storage ? JSON.parse(storage) : [];
         
         console.log(eats, 'take all processed');
+        
         return eats;
     } catch(error) {
         throw error;
