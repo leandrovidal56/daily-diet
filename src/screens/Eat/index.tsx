@@ -11,15 +11,13 @@ import { Container, Content, Date, DateText, Header, HeaderText, Row, Text, Titl
 export function Eat({route}){
     const navigation = useNavigation();
 
-    console.log(route, 'take routes')
-    console.log(route.params, 'take routes1')
 
     function handleEditEat(){
       navigation.navigate('EditEat', route.params)
     }
     async function  handleDeleteEat(){
       await eatDeleteByUser(route.params)
-    //   navigation.navigate('Home')
+      navigation.navigate('Home')
     }
     function handleGoBack(){
         navigation.goBack()

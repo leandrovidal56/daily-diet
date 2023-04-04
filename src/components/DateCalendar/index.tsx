@@ -7,37 +7,34 @@ type Props = TouchableOpacityProps &{
   teste?: string,
   setTime?: any,
   exportDate?: any,
-  dateValue?: any, 
+  // dateValue?: any, 
 }
 
 
-export function DateCalendar({teste, setTime, exportDate, dateValue}:Props) {
+// export function DateCalendar({teste, setTime, exportDate, dateValue}:Props) {
+export function DateCalendar({teste, setTime, exportDate}:Props) {
 
 
-  // const [date, setDate] = useState(new Date());
-  const [date, setDate] = useState(dateValue);
+  // const [date, setDate] = useState(dateValue);
+
   const [mode, setMode] = useState(teste);
+  const initialDate =(new Date().getDate, new Date().getDay() + new Date().getHours())
 
   const onChange = (event, selectedDate: any) => {
-    console.log(dateValue, 'pegar o que está vindo')
-    const currentDate = selectedDate || date;
+    // const currentDate = selectedDate || date;
+    const currentDate = selectedDate;
 
-    console.log(currentDate, 'currentDate')
-    console.log(selectedDate, 'selectedDate')
+
     let tempDate = new Date(currentDate)
-    console.log(tempDate, 'teste final')
     if( mode === 'date'){
       let fDate = tempDate.getDate() + '/' + (tempDate.getMonth() +1) + '/' + tempDate.getFullYear()
-      console.log(fDate, 'take fdate')
-      console.log(currentDate, 'take current Date')
       
       exportDate(fDate)
-      setDate(currentDate);
+      // setDate(currentDate);
     }
 
     if( mode === 'time'){
       if(tempDate.getMinutes() < 10){
-        console.log('foi') 
         let formatMinutes = `${ "0"+(tempDate.getMinutes())}`
         let fTime = `${tempDate.getHours()}:${formatMinutes}`;
         setTime(fTime)
@@ -52,8 +49,8 @@ export function DateCalendar({teste, setTime, exportDate, dateValue}:Props) {
         setTime(fTime)
       }
     }
-
-    setDate(currentDate);
+    exportDate(currentDate)
+    // setDate(currentDate);
   };
 
     return (
@@ -62,7 +59,8 @@ export function DateCalendar({teste, setTime, exportDate, dateValue}:Props) {
        <Content>
        <DateTimePicker
           testID="dateTimePicker"
-          value={date}
+          // value={date}
+          value={new Date()}
           mode={mode}
           is24Hour={true}
           onChange={onChange}

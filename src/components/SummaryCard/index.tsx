@@ -4,7 +4,7 @@ import { TouchableOpacityProps } from 'react-native';
 import { Container } from './styles';
 
 type Props = TouchableOpacityProps &{
-    title: string;
+    title: string | number;
     subTitle?: string;
     fail?: boolean;
     success?: boolean;

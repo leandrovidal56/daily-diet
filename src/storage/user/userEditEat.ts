@@ -6,38 +6,17 @@ import { eatsGetAll } from "./userGetEat";
 
 
 export async function eatEditByUser(item: Object, title: string, description: string, diet: boolean) {
+    console.log(item, 'take item')
     try {
-        
-        // console.log(title, 'take item edit by user')
-        // console.log(description, 'take item edit by user')
-        // console.log(diet, 'take item edit by user')
-        // console.log(item, 'take item edit by user')
-
         const storage = await eatsGetAll()
-        console.log(storage, 'take storage first')
         
-        const filtered = storage.find(item => item.id === item.id);        
-        console.log(filtered, 'usuário a ser editado')
+        const filtered = storage.filter(object => object.id !== item.id);        
+    
+        const obj = { id: item.id, date: item.date, title, time: item.time, eat: title, description, diet };
 
-        // const filteredOther = storage.filter(item => item.id !== item.id);        
-        ``
+        filtered.push(obj);
 
-
-        
-        // const teste = {...filtered, eat: title, description, diet: diet }
-        
-        // console.log(teste, 'usuário editado')
-
-        // const newArray = {...storage, teste}
-
-        // const itemString = JSON.stringify(newArray)
-
-        // console.log(itemString, 'usuário editado')
-
-        // const testeString = JSON.stringify(teste)
-        // console.log(testeString, 'usuário editado')
-
-        // await AsyncStorage.setItem(EAT_COLLECTION, itemString)
+        await AsyncStorage.setItem(EAT_COLLECTION, JSON.stringify(filtered));
 
 
     }catch (error) {

@@ -12,21 +12,18 @@ type Props = TouchableOpacity & {
 
 }
 
-export function Line({date, hour, title, diet, description, item}: Props) {
+export function Line({date, hour, title, time, diet, description, item}: Props) {
     const navigation = useNavigation();
 
     function handleEditEat(){
-        console.log('melhor forma de trabalhar', item)
-        // navigation.navigate('Eat', {date: date, hour: hour, title: title, description: description, diet: diet})
         navigation.navigate('Eat', item)
-    
       }
     return (
         <Container onPress={handleEditEat}>
             <Row>
                 <Time>{hour}</Time>
                 <Space>|</Space>
-                <Description>{title}</Description>
+                <Description>{title} {time}</Description>
             </Row>
                 <Marker good={diet} />
             

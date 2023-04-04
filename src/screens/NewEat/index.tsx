@@ -16,23 +16,35 @@ import { Platform } from "react-native";
 import { TimeCalendar } from "@components/TimeCalendar";
 
 export function NewEat(){
+  const initialDate =(`${new Date().getDate()}/${new Date().getMonth()+1}/${new Date().getFullYear()}`)
+  console.log(initialDate, 'takedate first')
+  let tempDate = new Date()
+  let fDate = tempDate.getDate() + '/' + (tempDate.getMonth() +1) + '/' + tempDate.getFullYear()
+  console.log(fDate, 'take fdate ')
+  
+  
   const [eat, setEat] = useState('')
   const [eatDescription, setEatDescription] = useState('')
-  const [diet, setDiet ] = useState(null)
-  const [date, setDate] = useState(new Date())
-  const [time, setTime] = useState('')
+  const [diet, setDiet ] = useState(false)
+  const [date, setDate] = useState( initialDate)
+  // const [date, setDate] = useState(new Date())
+  
+  // const [date, setDate] = useState(`${new Date().getDate()}/${new Date().getMonth()}/${new Date().getFullYear()}`);
+  const [time, setTime] = useState(`${new Date().getHours()}:${new Date().getMinutes()}`)
   const navigation = useNavigation();
-console.log(date, 'take data first')
+
+  
+
 
   async function handleFeedBack(){
     // AsyncStorage.clear()
     eatAddByUser(eat, eatDescription, diet, date, time)
     setEat('')
     setEatDescription('')
-    setDiet(null)
+    setDiet(false)
     
     setDate(new Date())
-    console.log(date, 'take date inside function')
+    
     navigation.navigate('FeedBack')
   }
   
@@ -42,7 +54,6 @@ console.log(date, 'take data first')
     eatsGetAll()
   }
 
-  console.log(date, 'teste')
     return (
         <Container>
             <Header>
@@ -56,14 +67,14 @@ console.log(date, 'take data first')
                 <Input title="Descrição" large value={eatDescription} onChangeText={(text) => setEatDescription(text)} />
                 <Row>
                     <DateCalendar 
-                     dateValue={date}
+                    //  dateValue={date}
                       teste="date"  
                        setTime={setTime}
                        exportDate={setDate}
                     />
                     <DateCalendar 
-                    dateValue={date}
-                    teste="time"
+                      //  dateValue={date}
+                       teste="time"
                        setTime={setTime}
                        exportDate={setDate}
                      />
@@ -74,3 +85,5 @@ console.log(date, 'take data first')
         </Container>
     )
 }
+
+

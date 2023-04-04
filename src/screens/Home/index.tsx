@@ -25,11 +25,9 @@ const [eats, setEats] = useState(['teste'])
   }
   async function fetchEatAll() {
     const takeEat = await eatsGetAll()
-    console.log(takeEat, 'funcionou')
     
-
-    console.log(takeEat.length, 'funcionou')
     setEats(takeEat)
+    console.log(takeEat, 'taking')
   }
 
   useFocusEffect(useCallback(() => {
@@ -60,19 +58,11 @@ const [eats, setEats] = useState(['teste'])
           description={item.description}
 
         />
-        // item.diet
-        // item.eat
-        // console.log(item)
+
       )}
       />
     
-      {/* <Line/>
-      <Line/>
-      <Line/>
-      <Line/>
-      <Line/>
-      <Line/>
-      <Line/> */}
+      
     </Container>
     
   );

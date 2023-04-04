@@ -21,26 +21,21 @@ type Props = TouchableOpacity & {
 
 export function EditEat({navigation, route}: Props){
     
-    console.log(route, 'take routes no último')
-    console.log(route.params, 'take routes no último')
+
 
     function handleGoBack(){
         navigation.goBack()
       }
       async function handleEditEat(){
         eatEditByUser(route.params, title, description, diet)
-    //     console.log(title, 'take title')
-    //   console.log(description, 'take description')
-    //   console.log(diet, 'take diet')
+        navigation.navigate('Home')
+    
       }
       const [title, setTitle] = useState(route.params.eat)
       const [description, setDescription] = useState(route.params.description)
       const [diet, setDiet] = useState(route.params.diet)
 
-    //   console.log(title, 'take title')
-    //   console.log(description, 'take description')
-    //   console.log(diet, 'take diet')
-
+    
     return (
         <Container>
             <Header>
@@ -69,7 +64,7 @@ export function EditEat({navigation, route}: Props){
                          exportDate={setDate}
                     /> */}
                 </Row>
-                <Select diet={diet} />
+                <Select diet={diet} setDiet={setDiet} />
             </Content>
             <Button title="Salvar alterações" onPress={handleEditEat} />
 

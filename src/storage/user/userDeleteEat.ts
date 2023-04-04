@@ -7,16 +7,15 @@ import { eatsGetAll } from "./userGetEat";
 
 export async function eatDeleteByUser(item: Object) {
     try {
+        console.log(item, 'take item')
+        console.log(item.id, 'take item')
         
         const storage = await eatsGetAll()
-        const filtered = storage.filter(item => item.id !== item.id);
+        console.log(storage, 'storage')
+        const filtered = storage.filter(object => object.id !== item.id);
         console.log(filtered, 'verificar se deletou antes');
         
-        // const eats = JSON.stringify(filtered);
-        // await AsyncStorage.setItem(`${EAT_COLLECTION}`, eats)
-        console.log(storage, 'verificar se deletou depois');
-
-
+        await AsyncStorage.setItem(EAT_COLLECTION, JSON.stringify(filtered));
 
 
     }catch (error) {

@@ -1,15 +1,52 @@
 import { PercentageCard } from "@components/PercentageCard";
 import { SummaryCard } from "@components/SummaryCard";
 import { Text } from "@components/Text";
-import { useNavigation } from "@react-navigation/native";
+import { useFocusEffect, useNavigation } from "@react-navigation/native";
 import { BackIcon } from "@screens/NewEat/styles";
 import { BackButton, Container, Content, Percentage, Row } from "./styles";
+import { eatsGetAll } from '@storage/user/userGetEat';
+import { useCallback, useEffect, useState } from "react";
+
+
 
 export function Statistics(){
     const navigation = useNavigation();
+    const [eats, setEats] = useState([''])
+    const [eatsRegister, setEatsRegister] = useState(0)
+    const [eatsGood, setEatsGood] = useState(0)
+    const [eatsBad, setEatsBad] = useState(0)
+    const [eatsPercentage, setEatsPercentage] = useState(0)
+    
+
+    async function fetchEatAll() {
+        const storage = await eatsGetAll()
+        const good = storage.filter(object => object.diet);
+        setEatsGood(good.length)
+        const bad = storage.filter(object => !object.diet);
+        setEatsBad(bad.length)
+
+        setEats(storage)
+        setEatsRegister(storage.length)
+        console.log(eatsRegister, 'teste Register dentro do fetchAll')
+        console.log(eatsGood, 'teste good dentro do fetchAll')
+        // setEatsPercentage((eatsGood / eatsRegister) *100)
+    }
+    
     function handleGoBack(){
         navigation.goBack()
       }
+      async function testando (){
+        const storage = await eatsGetAll()
+        setEatsPercentage((eatsGood / eatsRegister) *100 )
+
+      }
+    useEffect(() =>{
+        testando()
+    },[])
+      useFocusEffect(useCallback(() => {
+        fetchEatAll();
+      },[eatsGetAll]))
+    
     return (
         <Container>
             <Percentage>
@@ -17,9 +54,8 @@ export function Statistics(){
                 <BackIcon  />
               </BackButton>
                 <Text
-                    title="90,86%"
+                    title={eatsPercentage}
                     subTitle="das refeições dentro da dieta"
-                    
                 />
 
             </Percentage>
@@ -29,18 +65,18 @@ export function Statistics(){
                     subTitle="melhor sequência de pratos dentro da dieta"
                 />
                 <SummaryCard
-                    title="109"
+                    title={eatsRegister}
                     subTitle="refeições registradas"
                 />
                 <Row>
                 <SummaryCard
-                    title="32"
+                    title={eatsGood}
                     subTitle="refeições dentro da dieta"
                     small
                     background="#E5F0DB"
                     />
                 <SummaryCard
-                    title="77"
+                    title={eatsBad}
                     subTitle="refeições fora da dieta"
                     small
                     background="#F4E6E7"
