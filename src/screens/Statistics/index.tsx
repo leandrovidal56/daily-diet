@@ -11,41 +11,70 @@ import { useCallback, useEffect, useState } from "react";
 
 export function Statistics(){
     const navigation = useNavigation();
-    const [eats, setEats] = useState([''])
+    const [eats, setEats] = useState([])
     const [eatsRegister, setEatsRegister] = useState(0)
     const [eatsGood, setEatsGood] = useState(0)
     const [eatsBad, setEatsBad] = useState(0)
     const [eatsPercentage, setEatsPercentage] = useState(0)
+    const [ sequence, setSequence] = useState(0)
     
-
+    
     async function fetchEatAll() {
-        const storage = await eatsGetAll()
-        const good = storage.filter(object => object.diet);
-        setEatsGood(good.length)
-        const bad = storage.filter(object => !object.diet);
-        setEatsBad(bad.length)
+        try{
+            const storage = await eatsGetAll()
+            const good = storage.filter(object => object.diet);    
+            setEatsGood(good.length)
+            const bad = storage.filter(object => !object.diet);
+            setEatsBad(bad.length)
 
-        setEats(storage)
-        setEatsRegister(storage.length)
-        console.log(eatsRegister, 'teste Register dentro do fetchAll')
-        console.log(eatsGood, 'teste good dentro do fetchAll')
-        // setEatsPercentage((eatsGood / eatsRegister) *100)
+            setEatsRegister(storage.length)
+            setEatsPercentage((good.length / storage.length) *100)
+        }catch(error) {
+            console.log(error, 'dentro do catch')
+        }
+    }
+    async function bestSequencie(){
+        const storage = await eatsGetAll();
+
+        let arrayOfBest = [];
+        let count = 0;
+
+        storage.map(item => {
+            if(item.diet) {
+                ++count
+
+                return;
+            }
+            
+            if(!item.diet) {
+                arrayOfBest.push(count)
+                count = 0;
+                return;
+            }
+        });
+        const teste = arrayOfBest.slice(-1)
+        console.log(teste, 'teste')
+        console.log(count, 'take count')
+        if(count >= teste){
+            console.log( 'funcionou')
+            arrayOfBest.push(count)
+            setSequence(count)
+        }
+        console.log(sequence)
+        
+        setTimeout(() => {
+            console.log(arrayOfBest, 'arrayOfBest');
+        }, 2000)
+
     }
     
     function handleGoBack(){
         navigation.goBack()
       }
-      async function testando (){
-        const storage = await eatsGetAll()
-        setEatsPercentage((eatsGood / eatsRegister) *100 )
-
-      }
     useEffect(() =>{
-        testando()
-    },[])
-      useFocusEffect(useCallback(() => {
         fetchEatAll();
-      },[eatsGetAll]))
+        bestSequencie();
+    },[])
     
     return (
         <Container>
@@ -54,14 +83,13 @@ export function Statistics(){
                 <BackIcon  />
               </BackButton>
                 <Text
-                    title={eatsPercentage}
+                    title={`${eatsPercentage.toFixed(2)}%`}
                     subTitle="das refeições dentro da dieta"
                 />
-
             </Percentage>
             <Content>
                 <SummaryCard
-                    title="4"
+                    title={sequence}
                     subTitle="melhor sequência de pratos dentro da dieta"
                 />
                 <SummaryCard
@@ -82,9 +110,7 @@ export function Statistics(){
                     background="#F4E6E7"
                     />
                 </Row>
-
             </Content>
-
         </Container>
     )
 }

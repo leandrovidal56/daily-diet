@@ -5,7 +5,7 @@ import { EAT_COLLECTION } from "@storage/storageConfig";
 import { eatsGetAll } from "./userGetEat";
 
 
-export async function eatAddByUser(eat: string, description: string, diet: any, date: any, time: string,) {
+export async function eatAddByUser(eat: string, description: string, diet: any, date: any, time: string) {
     try {
         
         const eats = await eatsGetAll()

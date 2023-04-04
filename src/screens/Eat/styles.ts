@@ -1,7 +1,6 @@
-import { SafeAreaView } from 'react-native-safe-area-context';
 import styled from "styled-components/native";
 
-export const Container = styled(SafeAreaView)`
+export const Container = styled.View`
     flex: 1;
     background: ${({theme }) => theme.COLORS.GRAY_8};
     align-items: center;
@@ -15,6 +14,7 @@ export const Header = styled.View`
     justify-content: center;
     align-items: center;
     padding-top: 30px;
+    flex-direction: row;
 `
 export const HeaderText = styled.Text`
     font-size: ${({theme}) => theme.FONT_SIZE.LG}px;

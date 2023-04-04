@@ -7,13 +7,11 @@ import { useNavigation } from '@react-navigation/native';
 import { eatAddByUser } from "@storage/user/userAddEat";
 import { eatsGetAll } from "@storage/user/userGetEat";
 import { SetStateAction, useEffect, useState } from "react";
-// import TimePicker from 'react-time-picker';
 import DateTimePicker from '@react-native-community/datetimepicker';
 
 
 import { Container, Content, Header, Text, Row, BackIcon, BackButton  } from "./styles";
 import { Platform } from "react-native";
-import { TimeCalendar } from "@components/TimeCalendar";
 
 export function NewEat(){
   const initialDate =(`${new Date().getDate()}/${new Date().getMonth()+1}/${new Date().getFullYear()}`)

@@ -2,31 +2,23 @@ import { useNavigation } from "@react-navigation/native";
 import { TouchableOpacity } from "react-native";
 import { Container, Row, Time, Space, Description, Marker  } from "./styles";
 
-type Props = TouchableOpacity & {
-    date?: string;
-    hour?: string;
-    title?: string;
-    description?: string;
-    diet?: boolean;
-    item?: Object;
 
-}
-
-export function Line({date, hour, title, time, diet, description, item}: Props) {
+export function Line({item}: any) {
     const navigation = useNavigation();
+    console.log(item, 'take item')
 
     function handleEditEat(){
         navigation.navigate('Eat', item)
       }
-    return (
+      
+      return (
         <Container onPress={handleEditEat}>
             <Row>
-                <Time>{hour}</Time>
+                <Time>{item.time}</Time>
                 <Space>|</Space>
-                <Description>{title} {time}</Description>
+                <Description>{item.eat} {item.description}</Description>
             </Row>
-                <Marker good={diet} />
-            
+            <Marker good={item.diet} />
         </Container>
     )
 }

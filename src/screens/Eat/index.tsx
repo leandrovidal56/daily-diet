@@ -8,10 +8,8 @@ import { eatDeleteByUser } from "@storage/user/userDeleteEat";
 
 import { Container, Content, Date, DateText, Header, HeaderText, Row, Text, Title  } from "./styles";
 
-export function Eat({route}){
+export function Eat({route}: any ){
     const navigation = useNavigation();
-
-
     function handleEditEat(){
       navigation.navigate('EditEat', route.params)
     }
@@ -25,23 +23,21 @@ export function Eat({route}){
     return (
         <Container>
             <Header>
-            <BackButton onPress={handleGoBack}>
+              <BackButton onPress={handleGoBack}>
                 <BackIcon  />
               </BackButton>
-                <HeaderText>Refeição</HeaderText>
+              <HeaderText>Refeição</HeaderText>
             </Header>
+            
             <Content>
                 <Title>{route.params.eat}</Title>
                 <Text>
                     {route.params.description}
-                    {/* Sanduíche de pão integral com atum e 
-                    salada de alface e tomate */}
                 </Text>
                 <Date>Data e hora</Date>
                 <DateText>{route.params.date} às {route.params.time}</DateText>
                 <Status title="dentro da dieta" good={route.params.diet}/>
             </Content>
-
             <Button title="Editar refeição" marginBottom={9} onPress={handleEditEat} />
             <Button
                 background="#ffffff"
@@ -50,8 +46,6 @@ export function Eat({route}){
                 textColor="#1B1D1E"
                 onPress={handleDeleteEat}
             />
-            
-
         </Container>
     )
 }

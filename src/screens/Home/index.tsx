@@ -2,15 +2,12 @@ import { StatusBar } from 'expo-status-bar';
 import { Container, Text } from './styles';
 import { PercentageCard } from '@components/PercentageCard'
 import { Button } from '@components/Button'
-import { SummaryCard } from '@components/SummaryCard'
-import { Input } from '@components/Input';
 import { Line } from '@components/Line';
 import { Header } from '@components/Header';
 import { useFocusEffect, useNavigation } from '@react-navigation/native';
 import { useCallback, useState } from 'react';
 import { eatsGetAll } from '@storage/user/userGetEat';
 import { FlatList } from 'react-native';
-import AsyncStorage from '@react-native-async-storage/async-storage';
 
 
 export function Home() {
@@ -19,15 +16,11 @@ const [eats, setEats] = useState(['teste'])
 
   function handleNewEat(){
     navigation.navigate('NewEat')
-    // AsyncStorage.clear()
-    // eatsGetAll()
-
   }
+
   async function fetchEatAll() {
     const takeEat = await eatsGetAll()
-    
     setEats(takeEat)
-    console.log(takeEat, 'taking')
   }
 
   useFocusEffect(useCallback(() => {
@@ -49,20 +42,9 @@ const [eats, setEats] = useState(['teste'])
       data={eats}
       keyExtractor={item => item}
       renderItem={({ item}) => (
-        <Line
-          item={item}
-          date={item.date}
-          hour={item.time}
-          title={item.eat}
-          diet={item.diet}
-          description={item.description}
-
-        />
-
+        <Line item={item}/>
       )}
       />
-    
-      
     </Container>
     
   );
