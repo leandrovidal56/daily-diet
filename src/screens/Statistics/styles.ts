@@ -1,4 +1,5 @@
 import styled from "styled-components/native";
+import { ArrowLeft } from "phosphor-react-native";
 
 export const Container = styled.View`
     flex: 1;
@@ -17,8 +18,16 @@ export const Percentage = styled.View`
 export const BackButton = styled.TouchableOpacity`
     width: 32px;
     height: 32px;
-    margin-right: 82px;
+    padding-top: 60px;
+    padding-left: 27px;
+    background-color: red;
 `
+export const BackIcon = styled(ArrowLeft).attrs(({ theme}) => ({
+    size: 32,
+    color: theme.COLORS.GRAY_1
+}))`
+
+`;
 
 export const Content = styled.View`
     height: 80%;

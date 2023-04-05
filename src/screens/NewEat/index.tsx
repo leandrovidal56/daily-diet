@@ -1,14 +1,12 @@
 import { Button } from "@components/Button";
 import { DateCalendar } from "@components/DateCalendar";
+import { HeaderBackButton } from "@components/HeaderBackButton";
 import { Input } from "@components/Input";
 import { Select } from "@components/Select";
 import { useFocusEffect, useNavigation } from '@react-navigation/native';
 import { eatAddByUser } from "@storage/user/userAddEat";
-import { eatsGetAll } from "@storage/user/userGetEat";
 import { useCallback, useEffect, useState } from "react";
-
-
-import { Container, Content, Header, Text, Row, BackIcon, BackButton  } from "./styles";
+import { Container, Content, Row  } from "./styles";
 
 export function NewEat(){
   const [eat, setEat] = useState('')
@@ -39,11 +37,6 @@ export function NewEat(){
     }
   }
   
-  
-  function handleGoBack(){
-    navigation.goBack()
-    eatsGetAll()
-  }
 
   function startDateAndTime(){
     let startDate = new Date()
@@ -73,12 +66,7 @@ export function NewEat(){
 
     return (
         <Container>
-            <Header>
-              <BackButton onPress={handleGoBack}>
-                <BackIcon  />
-              </BackButton>
-                <Text>Nova refeição</Text>
-            </Header>
+            <HeaderBackButton title ="Nova Refeição"/>
             <Content>
                 <Input title="Nome"  value={eat} onChangeText={(text) => setEat(text)}/>
                 <Input title="Descrição" large value={eatDescription} onChangeText={(text) => setEatDescription(text)} />

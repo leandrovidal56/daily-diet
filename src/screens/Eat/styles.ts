@@ -7,25 +7,10 @@ export const Container = styled.View`
     margin-bottom: 40px;
 `
 
-export const Header = styled.View`
-    width: 100%;
-    height: 15%;
-    background: ${({theme }) => theme.COLORS.GREEN_LIGHT};
-    justify-content: center;
-    align-items: center;
-    padding-top: 30px;
-    flex-direction: row;
-`
-
-export const HeaderText = styled.Text`
-    font-size: ${({theme}) => theme.FONT_SIZE.LG}px;
-    line-height: 23.4px;
-    font-weight:${({ theme }) => theme.FONT_WEIGHT.SEMI_BOLD};
-    color: ${({ theme}) => theme.COLORS.GRAY_1};
-`
-
 export const Content = styled.View`
     height: 70%;
+    width: 100%;
+    padding: 40px 24px;
     border-radius: 20px;
 `
 
@@ -34,7 +19,6 @@ export const Title = styled.Text`
     line-height: 23.4px;
     font-weight:${({ theme }) => theme.FONT_WEIGHT.SEMI_BOLD};
     color: ${({ theme}) => theme.COLORS.GRAY_1};
-    margin-top: 40px;
 `
 
 export const Text = styled.Text`
@@ -61,9 +45,3 @@ export const DateText = styled.Text`
     margin-top: 8px;
 `
 
-export const Row = styled.View`
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    width: 327px;
-`

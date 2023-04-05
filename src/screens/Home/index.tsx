@@ -5,10 +5,9 @@ import { Button } from '@components/Button'
 import { Line } from '@components/Line';
 import { Header } from '@components/Header';
 import { useFocusEffect, useNavigation } from '@react-navigation/native';
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useState } from 'react';
 import { eatsGetAll } from '@storage/user/userGetEat';
 import { FlatList } from 'react-native';
-
 
 export function Home() {
 const [eats, setEats] = useState(['teste'])
@@ -31,17 +30,10 @@ const [eatsPercentage, setEatsPercentage] = useState(0)
     }
   }
 
-
-
   useFocusEffect(useCallback(() => {
     fetchEatAll();
   },[eatsGetAll]))
   
-  useEffect(() =>{
-    
-    
-},[])
-
   return (
     <Container>
       <Header/>

@@ -1,11 +1,11 @@
 import { Button } from "@components/Button";
+import { HeaderBackButton } from "@components/HeaderBackButton";
 import { Status } from "@components/Status";
 import { useNavigation } from "@react-navigation/native";
-import { BackButton, BackIcon } from "@screens/NewEat/styles";
 import { eatDeleteByUser } from "@storage/user/userDeleteEat";
 
 
-import { Container, Content, Date, DateText, Header, HeaderText, Row, Text, Title  } from "./styles";
+import { Container, Content, Date, DateText, Text, Title  } from "./styles";
 
 export function Eat({route}: any ){
     const navigation = useNavigation();
@@ -16,17 +16,10 @@ export function Eat({route}: any ){
       await eatDeleteByUser(route.params)
       navigation.navigate('Home')
     }
-    function handleGoBack(){
-        navigation.goBack()
-      }
+
     return (
         <Container>
-            <Header>
-              <BackButton onPress={handleGoBack}>
-                <BackIcon  />
-              </BackButton>
-              <HeaderText>Refeição</HeaderText>
-            </Header>
+            <HeaderBackButton title ="Refeição"/>
             <Content>
                 <Title>{route.params.eat}</Title>
                 <Text>
@@ -38,11 +31,11 @@ export function Eat({route}: any ){
             </Content>
             <Button title="Editar refeição" marginBottom={9} onPress={handleEditEat} />
             <Button
-                background="#ffffff"
-                borderColor="#1B1D1E"
-                title="Excluir refeição" 
-                textColor="#1B1D1E"
-                onPress={handleDeleteEat}
+              background="#ffffff"
+              borderColor="#1B1D1E"
+              title="Excluir refeição" 
+              textColor="#1B1D1E"
+              onPress={handleDeleteEat}
             />
         </Container>
     )

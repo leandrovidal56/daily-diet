@@ -1,16 +1,12 @@
 import { Button } from "@components/Button";
-import { DateCalendar } from "@components/DateCalendar";
+import { HeaderBackButton } from "@components/HeaderBackButton";
 import { Input } from "@components/Input";
-import { Line } from "@components/Line";
-import { PercentageCard } from "@components/PercentageCard";
 import { Select } from "@components/Select";
-import { SummaryCard } from "@components/SummaryCard";
-import { BackButton, BackIcon } from "@screens/NewEat/styles";
 import { eatEditByUser } from "@storage/user/userEditEat";
 import { useState } from "react";
 import { TouchableOpacity } from "react-native";
 
-import { Container, Content, Header, Text, Row  } from "./styles";
+import { Container, Content } from "./styles";
 
 type Props = TouchableOpacity & {
     hour?: string;
@@ -21,9 +17,6 @@ type Props = TouchableOpacity & {
 }
 
 export function EditEat({navigation, route}: Props){
-    function handleGoBack(){
-        navigation.goBack()
-      }
     async function handleEditEat(){
     eatEditByUser(route.params, title, description, diet)
     navigation.navigate('Home')
@@ -35,24 +28,24 @@ export function EditEat({navigation, route}: Props){
 
     return (
         <Container>
-            <Header>
-            <BackButton onPress={handleGoBack}>
-                <BackIcon  />
-              </BackButton>
-                <Text>Editar refeição</Text>
-            </Header>
+            <HeaderBackButton
+                title="Editar refeição"
+            />
             <Content>
-                <Input title="Nome" 
-                value={title}
-                 onChangeText={setTitle} />
-                <Input title="Descrição" large 
-                value={description} 
-                onChangeText={setDescription}
+                <Input 
+                    title="Nome" 
+                    value={title}
+                    onChangeText={setTitle} 
+                />
+                <Input 
+                    title="Descrição" 
+                    large 
+                    value={description} 
+                    onChangeText={setDescription}
                 />
                 <Select diet={diet} setDiet={setDiet} />
             </Content>
             <Button title="Salvar alterações" onPress={handleEditEat} />
-
         </Container>
     )
 }

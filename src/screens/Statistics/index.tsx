@@ -1,9 +1,7 @@
-import { PercentageCard } from "@components/PercentageCard";
 import { SummaryCard } from "@components/SummaryCard";
 import { Text } from "@components/Text";
-import { useFocusEffect, useNavigation } from "@react-navigation/native";
-import { BackIcon } from "@screens/NewEat/styles";
-import { BackButton, Container, Content, Percentage, Row } from "./styles";
+import { useNavigation } from "@react-navigation/native";
+import { BackButton, BackIcon, Container, Content, Percentage, Row } from "./styles";
 import { eatsGetAll } from '@storage/user/userGetEat';
 import { useEffect, useState } from "react";
 
@@ -11,7 +9,6 @@ import { useEffect, useState } from "react";
 
 export function Statistics(){
     const navigation = useNavigation();
-    const [eats, setEats] = useState([])
     const [eatsRegister, setEatsRegister] = useState(0)
     const [eatsGood, setEatsGood] = useState(0)
     const [eatsBad, setEatsBad] = useState(0)
@@ -30,7 +27,7 @@ export function Statistics(){
             setEatsRegister(storage.length)
             setEatsPercentage((good.length / storage.length) *100)
         }catch(error) {
-            console.log(error, 'dentro do catch')
+            console.error(error, 'dentro do catch')
         }
     }
     async function bestSequencie(){
@@ -42,10 +39,8 @@ export function Statistics(){
         storage.map(item => {
             if(item.diet) {
                 ++count
-
                 return;
             }
-            
             if(!item.diet) {
                 arrayOfBest.push(count)
                 count = 0;
@@ -57,9 +52,6 @@ export function Statistics(){
             arrayOfBest.push(count)
             setSequence(count)
         }
-        
-      
-
     }
     
     function handleGoBack(){
@@ -73,9 +65,9 @@ export function Statistics(){
     return (
         <Container>
             <Percentage>
-            <BackButton onPress={handleGoBack}>
-                <BackIcon  />
-              </BackButton>
+                <BackButton onPress={handleGoBack}>
+                    <BackIcon  />
+                </BackButton>
                 <Text
                     title={`${eatsPercentage.toFixed(2)}%`}
                     subTitle="das refeições dentro da dieta"
