@@ -5,7 +5,7 @@ import { useFocusEffect, useNavigation } from "@react-navigation/native";
 import { BackIcon } from "@screens/NewEat/styles";
 import { BackButton, Container, Content, Percentage, Row } from "./styles";
 import { eatsGetAll } from '@storage/user/userGetEat';
-import { useCallback, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
 
 
@@ -52,19 +52,13 @@ export function Statistics(){
                 return;
             }
         });
-        const teste = arrayOfBest.slice(-1)
-        console.log(teste, 'teste')
-        console.log(count, 'take count')
-        if(count >= teste){
-            console.log( 'funcionou')
+        const insertNewRecord = arrayOfBest.slice(-1)
+        if(count >= insertNewRecord){
             arrayOfBest.push(count)
             setSequence(count)
         }
-        console.log(sequence)
         
-        setTimeout(() => {
-            console.log(arrayOfBest, 'arrayOfBest');
-        }, 2000)
+      
 
     }
     

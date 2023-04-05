@@ -12,7 +12,7 @@ export const Title = styled.Text`
     line-height: 41.6px;
     font-weight:${({ theme }) => theme.FONT_WEIGHT.BOLD};
     color: ${({ theme}) => theme.COLORS.RED_DARK};
-    `
+`
 
 export const SubTitle = styled.Text`
     font-size: ${({ theme}) => theme.FONT_SIZE.MD}px;
@@ -21,6 +21,7 @@ export const SubTitle = styled.Text`
     line-height: 18.2px;
     text-align: center;
 `
+
 export const Image = styled.Image`
     margin-top: 50px;
     margin-bottom: 50px;

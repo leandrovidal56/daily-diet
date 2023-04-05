@@ -4,7 +4,6 @@ import {ButtonRow, Container, Marker,  Title} from './styles'
 type Props = TouchableOpacityProps &{
     title?: string,
     good?: boolean,
-
 }
 
 export function Status({title, good}: Props){

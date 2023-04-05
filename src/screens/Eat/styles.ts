@@ -16,12 +16,14 @@ export const Header = styled.View`
     padding-top: 30px;
     flex-direction: row;
 `
+
 export const HeaderText = styled.Text`
     font-size: ${({theme}) => theme.FONT_SIZE.LG}px;
     line-height: 23.4px;
     font-weight:${({ theme }) => theme.FONT_WEIGHT.SEMI_BOLD};
     color: ${({ theme}) => theme.COLORS.GRAY_1};
 `
+
 export const Content = styled.View`
     height: 70%;
     border-radius: 20px;
@@ -50,6 +52,7 @@ export const Date = styled.Text`
     color: ${({ theme}) => theme.COLORS.GRAY_1};
     margin-top: 24px;
 `
+
 export const DateText = styled.Text`
     font-size: ${({theme}) => theme.FONT_SIZE.MD}px;
     line-height: 20.8px;
@@ -57,6 +60,7 @@ export const DateText = styled.Text`
     color: ${({ theme}) => theme.COLORS.GRAY_1};
     margin-top: 8px;
 `
+
 export const Row = styled.View`
     flex-direction: row;
     justify-content: space-between;

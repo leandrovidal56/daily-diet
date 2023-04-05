@@ -8,6 +8,7 @@ import { SummaryCard } from "@components/SummaryCard";
 import { BackButton, BackIcon } from "@screens/NewEat/styles";
 import { eatEditByUser } from "@storage/user/userEditEat";
 import { useState } from "react";
+import { TouchableOpacity } from "react-native";
 
 import { Container, Content, Header, Text, Row  } from "./styles";
 
@@ -20,22 +21,18 @@ type Props = TouchableOpacity & {
 }
 
 export function EditEat({navigation, route}: Props){
-    
-
-
     function handleGoBack(){
         navigation.goBack()
       }
-      async function handleEditEat(){
-        eatEditByUser(route.params, title, description, diet)
-        navigation.navigate('Home')
-    
-      }
-      const [title, setTitle] = useState(route.params.eat)
-      const [description, setDescription] = useState(route.params.description)
-      const [diet, setDiet] = useState(route.params.diet)
+    async function handleEditEat(){
+    eatEditByUser(route.params, title, description, diet)
+    navigation.navigate('Home')
 
-    
+    }
+    const [title, setTitle] = useState(route.params.eat)
+    const [description, setDescription] = useState(route.params.description)
+    const [diet, setDiet] = useState(route.params.diet)
+
     return (
         <Container>
             <Header>
@@ -46,24 +43,12 @@ export function EditEat({navigation, route}: Props){
             </Header>
             <Content>
                 <Input title="Nome" 
-                // value={route.params.eat}
                 value={title}
                  onChangeText={setTitle} />
                 <Input title="Descrição" large 
-                // value={route.params.description} 
                 value={description} 
                 onChangeText={setDescription}
                 />
-                <Row>
-                    {/* <Input title="Data" small /> */}
-                    {/* <Input title="Data" small /> */}
-                    {/* <DateCalendar
-                      dateValue={route.params.hour}
-                      teste="time"
-                         setTime={setTime}
-                         exportDate={setDate}
-                    /> */}
-                </Row>
                 <Select diet={diet} setDiet={setDiet} />
             </Content>
             <Button title="Salvar alterações" onPress={handleEditEat} />

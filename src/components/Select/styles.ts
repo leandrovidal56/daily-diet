@@ -8,11 +8,11 @@ type Props = {
 }
 
 export const Container = styled.View`
-
     display: flex;
     justify-content: center;
     margin-top: 30px;
 `
+
 export const ButtonRow = styled(TouchableOpacity)<Props>`
     width: 159.5px;
     height: 50px;
@@ -24,14 +24,12 @@ export const ButtonRow = styled(TouchableOpacity)<Props>`
     : status === null
     ? theme.COLORS.GRAY_6
     : theme.COLORS.RED_MID};
-        
-    
-     
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: row;
 `
+
 export const Title = styled.Text`
     font-size: ${({theme}) => theme.FONT_SIZE.SM}px;
     font-weight: ${({theme}) => theme.FONT_WEIGHT.BOLD};
@@ -45,6 +43,7 @@ export const Row = styled.View`
     align-items: center;
     width: 327px;
 `
+
 export const Marker = styled.View<Props>`
     width: 8px;
     height: 8px;

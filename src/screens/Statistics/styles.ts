@@ -5,6 +5,7 @@ export const Container = styled.View`
     background: ${({theme }) => theme.COLORS.GRAY_8};
     justify-content: flex-end;
 `
+
 export const Percentage = styled.View`
     width: 100%;
     height: 20%;
@@ -12,6 +13,7 @@ export const Percentage = styled.View`
     justify-content: center;
     margin-top: 50px;
 `
+
 export const BackButton = styled.TouchableOpacity`
     width: 32px;
     height: 32px;

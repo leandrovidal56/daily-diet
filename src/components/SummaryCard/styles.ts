@@ -18,7 +18,6 @@ export const Container = styled(TouchableOpacity)<Props>`
     display: flex;
     align-items: center;
     justify-content: center;
-    
 `
 
 export const Title = styled.Text`
@@ -27,6 +26,7 @@ export const Title = styled.Text`
     color: ${({ theme}) => theme.COLORS.GRAY_1};
     line-height: 31.2px;
 `
+
 export const SubTitle = styled.Text`
     font-size: ${({ theme}) => theme.FONT_SIZE.XL}px;
     line-height: 18.2px;

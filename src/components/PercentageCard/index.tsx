@@ -1,6 +1,5 @@
 import { Text } from '@components/Text';
 import { useNavigation } from '@react-navigation/native';
-import { BackIcon } from '@screens/NewEat/styles';
 import { TouchableOpacityProps } from 'react-native';
 import {Container} from './styles';
 

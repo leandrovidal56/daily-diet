@@ -13,7 +13,13 @@ type Props = TouchableOpacityProps &{
 
 export function Button({title, small, background, borderColor, textColor, marginBottom, disabled, ...rest}: Props){
     return (
-        <Container disabled={disabled} small={small} background={background} borderColor={borderColor} marginBottom={marginBottom}{...rest}>
+        <Container 
+            disabled={disabled} 
+            small={small} 
+            background={background} 
+            borderColor={borderColor} 
+            marginBottom={marginBottom}
+            {...rest}>
             <Title textColor={textColor}>{title}</Title>
         </Container>
     )

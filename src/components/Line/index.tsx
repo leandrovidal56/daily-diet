@@ -1,11 +1,9 @@
 import { useNavigation } from "@react-navigation/native";
-import { TouchableOpacity } from "react-native";
 import { Container, Row, Time, Space, Description, Marker  } from "./styles";
 
 
 export function Line({item}: any) {
     const navigation = useNavigation();
-    console.log(item, 'take item')
 
     function handleEditEat(){
         navigation.navigate('Eat', item)

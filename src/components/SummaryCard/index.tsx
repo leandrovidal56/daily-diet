@@ -1,4 +1,3 @@
-import { Text } from '@components/Text';
 import { TextCard } from '@components/TextCard';
 import { TouchableOpacityProps } from 'react-native';
 import { Container } from './styles';
@@ -10,7 +9,6 @@ type Props = TouchableOpacityProps &{
     success?: boolean;
     small?: boolean;
     background?: string;
-
 }
 
 export function SummaryCard({title, subTitle, fail, background, small}: Props) {

@@ -20,6 +20,7 @@ export const SubTitle = styled.Text`
     color: ${({theme}) => theme.COLORS.GRAY_2};
     line-height: 18.2px;
 `
+
 export const Image = styled.Image`
     margin-top: 50px;
     margin-bottom: 50px;

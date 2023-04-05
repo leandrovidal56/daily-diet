@@ -32,10 +32,9 @@ const [eats, setEats] = useState(['teste'])
       <Header/>
       <StatusBar style="auto" />
       <PercentageCard
-      title='90,86%'
-      subTitle='das refeições dentro da dieta'
-      
-       />
+        title='90,86%'
+        subTitle='das refeições dentro da dieta'
+      />
       <Text>Refeições</Text>
       <Button title='Nova refeição' onPress={ handleNewEat}/>
       <FlatList

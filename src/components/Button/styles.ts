@@ -8,7 +8,6 @@ type Props = {
     small?: boolean;
     textColor?: string;
     marginBottom?: number;
-    
 }
 
 export const Container = styled(TouchableOpacity)<Props>`

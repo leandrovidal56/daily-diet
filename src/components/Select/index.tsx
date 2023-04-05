@@ -12,11 +12,11 @@ export function Select({title, diet, setDiet, ...rest}: Props){
         <Container>
             <Title>Está dentro da dieta?</Title>
         <Row>
-            <ButtonRow status={diet ? true : null} onPress={() => setDiet(true)} {...rest} >
+            <ButtonRow status={diet ? diet : null} onPress={() => setDiet(true)} {...rest} >
                 <Marker good/>
                 <Title>Sim</Title>
             </ButtonRow>
-            <ButtonRow status={!diet ? false : null} onPress={() => setDiet(false)}>
+            <ButtonRow status={!diet ? diet : null} onPress={() => setDiet(false)}>
                 <Marker />
                 <Title>Não</Title>
             </ButtonRow>

@@ -1,5 +1,4 @@
 import { Button } from "@components/Button";
-import { Input } from "@components/Input";
 import { Status } from "@components/Status";
 import { useNavigation } from "@react-navigation/native";
 import { BackButton, BackIcon } from "@screens/NewEat/styles";
@@ -28,7 +27,6 @@ export function Eat({route}: any ){
               </BackButton>
               <HeaderText>Refeição</HeaderText>
             </Header>
-            
             <Content>
                 <Title>{route.params.eat}</Title>
                 <Text>

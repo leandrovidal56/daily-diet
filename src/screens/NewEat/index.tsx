@@ -2,17 +2,13 @@ import { Button } from "@components/Button";
 import { DateCalendar } from "@components/DateCalendar";
 import { Input } from "@components/Input";
 import { Select } from "@components/Select";
-import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useFocusEffect, useNavigation } from '@react-navigation/native';
 import { eatAddByUser } from "@storage/user/userAddEat";
 import { eatsGetAll } from "@storage/user/userGetEat";
-import { SetStateAction, useCallback, useEffect, useState } from "react";
-import DateTimePicker from '@react-native-community/datetimepicker';
+import { useCallback, useEffect, useState } from "react";
 
 
 import { Container, Content, Header, Text, Row, BackIcon, BackButton  } from "./styles";
-import { Platform } from "react-native";
-import { Ruler } from "phosphor-react-native";
 
 export function NewEat(){
   const [eat, setEat] = useState('')
@@ -48,6 +44,7 @@ export function NewEat(){
     navigation.goBack()
     eatsGetAll()
   }
+
   function startDateAndTime(){
     let startDate = new Date()
     let formatDate = startDate.getDate() + '/' + (startDate.getMonth() +1) + '/' + startDate.getFullYear()

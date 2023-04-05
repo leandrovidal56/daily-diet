@@ -10,6 +10,7 @@ export const Container = styled.View`
     justify-content: center;
     margin-top: 30px;
 `
+
 export const ButtonRow = styled.View<Props>`
     width: 144px;
     height: 34px;
@@ -21,6 +22,7 @@ export const ButtonRow = styled.View<Props>`
     justify-content: center;
     flex-direction: row;
 `
+
 export const Title = styled.Text`
     font-size: ${({theme}) => theme.FONT_SIZE.SM}px;
     font-weight: ${({theme}) => theme.FONT_WEIGHT.NORMAL};

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Container, Content, ViewCalendarCenter, ViewCalendar, Text } from "./styles";
-import {  Platform, TouchableOpacityProps } from "react-native";
+import { TouchableOpacityProps } from "react-native";
 import DateTimePicker from '@react-native-community/datetimepicker';
 
 type Props = TouchableOpacityProps &{
@@ -20,13 +20,11 @@ export function DateCalendar({modeCalendar, exportDate, exportTime}:Props) {
   
   const onChange = (event, selectedDate) => {
     const currentDate = selectedDate;
-    console.log(currentDate, 'take firs step')
     setDate(currentDate);
 
     let tempDate = currentDate
     if( mode !== 'time'){
       let fDate = tempDate.getDate() + '/' + (tempDate.getMonth() +1) + '/' + tempDate.getFullYear()
-      console.log('funcionando')
       exportDate(fDate)
     }
     
@@ -45,8 +43,6 @@ export function DateCalendar({modeCalendar, exportDate, exportTime}:Props) {
       }
     }
   };
-
-
 
     return (
       <Container>

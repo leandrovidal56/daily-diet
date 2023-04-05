@@ -1,12 +1,9 @@
-
-
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { EAT_COLLECTION } from "@storage/storageConfig";
 import { eatsGetAll } from "./userGetEat";
 
 
 export async function eatEditByUser(item: Object, title: string, description: string, diet: boolean) {
-    console.log(item, 'take item')
     try {
         const storage = await eatsGetAll()
         

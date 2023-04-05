@@ -9,6 +9,7 @@ export function FeedBackBad(){
     function handleHome(){
       navigation.navigate('Home')
     }
+    
     return (
         <Container>
             <Title>Que pena!</Title>
