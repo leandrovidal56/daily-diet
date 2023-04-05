@@ -12,6 +12,7 @@ import DateTimePicker from '@react-native-community/datetimepicker';
 
 import { Container, Content, Header, Text, Row, BackIcon, BackButton  } from "./styles";
 import { Platform } from "react-native";
+import { Ruler } from "phosphor-react-native";
 
 export function NewEat(){
   const [eat, setEat] = useState('')
@@ -20,12 +21,9 @@ export function NewEat(){
 
   const [date, setDate] = useState('')
   const [time, setTime] = useState('')
-  const [enable, setEnable] = useState(true)
+  const [disable, setDisable] = useState(true)
   const navigation = useNavigation();
 
-  
-  
-  
 
   async function handleFeedBack(){
     eatAddByUser(eat, eatDescription, diet, date, time)
@@ -39,6 +37,12 @@ export function NewEat(){
       navigation.navigate('FeedBackBad')
     }
   }
+  function disableButton(){
+    if(eat && eatDescription){
+      setDisable(false)
+    }
+  }
+  
   
   function handleGoBack(){
     navigation.goBack()
@@ -65,6 +69,10 @@ export function NewEat(){
   useFocusEffect(useCallback(() => {
     startDateAndTime()
   },[]))
+  
+  useEffect(()=>{
+    disableButton()
+  },[eat, eatDescription])
 
     return (
         <Container>
@@ -89,7 +97,7 @@ export function NewEat(){
                 <Select diet={diet} setDiet={setDiet} />
             </Content>
             <Button
-            //  disabled={enable} 
+             disabled={disable} 
              title="Cadastrar refeição"  onPress={handleFeedBack}/>
         </Container>
     )
