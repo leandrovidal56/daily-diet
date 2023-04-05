@@ -5,47 +5,51 @@ import DateTimePicker from '@react-native-community/datetimepicker';
 
 type Props = TouchableOpacityProps &{
   modeCalendar?: string,
-  exportDate?: any,
-  exportTime?: any,
+  exportDate: any,
 }
 
 
-export function DateCalendar({modeCalendar, exportDate, exportTime}:Props) {
+export function DateCalendar({modeCalendar, exportDate}:Props) {
 
 
   const initialDate =(new Date().getDate, new Date().getDay() + new Date().getHours())
   const [date, setDate] = useState(new Date());
 
-  const [mode, setMode] = useState(modeCalendar || 'date');
-  
+  // const [mode, setMode] = useState(modeCalendar);
+  const [mode, setMode] = useState('date');
+
   const onChange = (event, selectedDate) => {
     const currentDate = selectedDate;
     console.log(currentDate, 'take firs step')
-    setDate(currentDate);
+    // setDate(currentDate);
 
-    let tempDate = currentDate
-    if( mode !== 'time'){
+
+    let tempDate = new Date(currentDate)
+    // if( mode === 'date'){
       let fDate = tempDate.getDate() + '/' + (tempDate.getMonth() +1) + '/' + tempDate.getFullYear()
-      console.log('funcionando')
       exportDate(fDate)
-    }
-    
-    if(mode === 'time'){
+    // }
+
+    if( mode === 'time'){
       if(tempDate.getMinutes() < 10){
         let formatMinutes = `${ "0"+(tempDate.getMinutes())}`
         let fTime = `${tempDate.getHours()}:${formatMinutes}`;
-        exportTime(fTime)
+        // setTime(fTime)
       } else if(tempDate.getHours()< 10){
         let formatHours = `${ "0"+(tempDate.getHours())}`
-        let fTime = `${formatHours}:${tempDate.getMinutes()}`;
-        exportTime(fTime)
-      }else{
+        let fTime = `${tempDate.getHours()}:${formatHours}`;
+        // setTime(fTime)
+      }
+      else{
         let fTime = `${tempDate.getHours()}:${tempDate.getMinutes()}`;
-        exportTime(fTime)
+        // setTime(fTime)
       }
     }
-  };
+    // exportDate(currentDate)
 
+    
+  };
+  
 
 
     return (
@@ -55,6 +59,7 @@ export function DateCalendar({modeCalendar, exportDate, exportTime}:Props) {
        <DateTimePicker
           testID="dateTimePicker"
           value={date}
+          // value={new Date()}
           mode={mode}
           is24Hour={true}
           onChange={onChange}

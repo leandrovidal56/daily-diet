@@ -15,6 +15,7 @@ export const Container = styled(TouchableOpacity)<Props>`
     width: ${({ small  }) => small ? 191 : 327}px;
     height: 50px;
     border-radius: 6px;
+    opacity: ${({ disabled}) => disabled ? 0.5 : 1.0};
     border: 1px solid ${({ borderColor}) => borderColor ? borderColor : theme.COLORS.GRAY_2};
     background-color: ${({ background }) => background ? background : theme.COLORS.GRAY_2};
     display: flex;
