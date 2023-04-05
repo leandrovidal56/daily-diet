@@ -5,13 +5,15 @@ import { Button } from '@components/Button'
 import { Line } from '@components/Line';
 import { Header } from '@components/Header';
 import { useFocusEffect, useNavigation } from '@react-navigation/native';
-import { useCallback, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { eatsGetAll } from '@storage/user/userGetEat';
 import { FlatList } from 'react-native';
 
 
 export function Home() {
 const [eats, setEats] = useState(['teste'])
+const [eatsPercentage, setEatsPercentage] = useState(0)
+
   const navigation = useNavigation();
 
   function handleNewEat(){
@@ -19,24 +21,37 @@ const [eats, setEats] = useState(['teste'])
   }
 
   async function fetchEatAll() {
-    const takeEat = await eatsGetAll()
-    setEats(takeEat)
+    try{
+      const takeEat = await eatsGetAll()
+      const good = takeEat.filter(object => object.diet);
+      setEatsPercentage((good.length / takeEat.length) *100)
+      setEats(takeEat)
+    }catch(error){
+      console.error(error)
+    }
   }
+
+
 
   useFocusEffect(useCallback(() => {
     fetchEatAll();
   },[eatsGetAll]))
+  
+  useEffect(() =>{
+    
+    
+},[])
 
   return (
     <Container>
       <Header/>
       <StatusBar style="auto" />
       <PercentageCard
-        title='90,86%'
+        title={`${eatsPercentage.toFixed(2)}%`}
         subTitle='das refeições dentro da dieta'
       />
       <Text>Refeições</Text>
-      <Button title='Nova refeição' onPress={ handleNewEat}/>
+      <Button title='Nova refeição' onPress={handleNewEat}/>
       <FlatList
       data={eats}
       keyExtractor={item => item}
