@@ -14,7 +14,7 @@ export function Line({item}: any) {
             <Row>
                 <Time>{item.time}</Time>
                 <Space>|</Space>
-                <Description>{item.eat} {item.description}</Description>
+                <Description numberOfLines={1} ellipsizeMode="tail">{item.eat}</Description>
             </Row>
             <Marker good={item.diet} />
         </Container>

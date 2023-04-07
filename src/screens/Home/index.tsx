@@ -9,8 +9,18 @@ import { useCallback, useState } from 'react';
 import { eatsGetAll } from '@storage/user/userGetEat';
 import { FlatList } from 'react-native';
 
+type EatProps = {
+  eat?: string;
+  description?: string;
+  date?: string;
+  time?: string;
+  diet?: boolean;  
+  id?: string;
+}
+
 export function Home() {
-const [eats, setEats] = useState(['teste'])
+
+const [eats, setEats] = useState<EatProps[]>([])
 const [eatsPercentage, setEatsPercentage] = useState(0)
 
   const navigation = useNavigation();
@@ -22,9 +32,9 @@ const [eatsPercentage, setEatsPercentage] = useState(0)
   async function fetchEatAll() {
     try{
       const takeEat = await eatsGetAll()
+      setEats(takeEat)
       const good = takeEat.filter(object => object.diet);
       setEatsPercentage((good.length / takeEat.length) *100)
-      setEats(takeEat)
     }catch(error){
       console.error(error)
     }
@@ -45,11 +55,11 @@ const [eatsPercentage, setEatsPercentage] = useState(0)
       <Text>Refeições</Text>
       <Button title='Nova refeição' onPress={handleNewEat}/>
       <FlatList
-      data={eats}
-      keyExtractor={item => item}
-      renderItem={({ item}) => (
-        <Line item={item}/>
-      )}
+        data={eats}
+        keyExtractor={(item: EatProps) => String(item.id)}
+        renderItem={({item}) => (
+          <Line item={item}/>
+        )}
       />
     </Container>
     

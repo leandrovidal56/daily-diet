@@ -8,7 +8,6 @@ type Props = TouchableOpacityProps &{
     borderColor?: string,
     textColor?: string,
     marginBottom?: number,
- 
 }
 
 export function Button({title, small, background, borderColor, textColor, marginBottom, disabled, ...rest}: Props){

@@ -3,8 +3,10 @@ import { HeaderBackButton } from "@components/HeaderBackButton";
 import { Input } from "@components/Input";
 import { Select } from "@components/Select";
 import { eatEditByUser } from "@storage/user/userEditEat";
-import { useState } from "react";
+import { useNavigation } from "@react-navigation/native";
+import { useState, FC } from "react";
 import { TouchableOpacity } from "react-native";
+
 
 import { Container, Content } from "./styles";
 
@@ -16,9 +18,11 @@ type Props = TouchableOpacity & {
 
 }
 
-export function EditEat({navigation, route}: Props){
+export function EditEat({ route}:any){
+    const navigation = useNavigation();
+
     async function handleEditEat(){
-    eatEditByUser(route.params, title, description, diet)
+    await eatEditByUser(route.params, title, description, diet)
     navigation.navigate('Home')
 
     }

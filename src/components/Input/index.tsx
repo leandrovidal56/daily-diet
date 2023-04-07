@@ -11,7 +11,7 @@ type Props = TouchableOpacityProps & TextInputProps &{
 export function Input({title, small, large, inputRef, ...rest}: Props) {
     return (
         <Container >
-            <Text numberOfLines={3}>{title}</Text>
+            <Text>{title}</Text>
             <Content ref={inputRef} small={small} large={large} {...rest}/>                
         </Container>
     )

@@ -1,4 +1,5 @@
-import { BackButton, BackIcon, Container, Header, Text } from "./styles";
+import {BackIcon, Space, Container, Header, Text } from "./styles";
+import { TouchableOpacity } from 'react-native';
 import { useNavigation } from "@react-navigation/native";
 
 type Props = {
@@ -14,12 +15,13 @@ export function HeaderBackButton ({title}: Props) {
 
     return (
         <Container>
-            <Header>
-                <BackButton onPress={handleGoBack}>
-                    <BackIcon  />
-                </BackButton>
-                <Text>{title}</Text>
-            </Header>
+            <TouchableOpacity
+                 onPress={handleGoBack}
+                 >
+                <BackIcon  />
+            </TouchableOpacity>
+            <Text>{title}</Text>
+            <Space />
         </Container>
     )    
 }

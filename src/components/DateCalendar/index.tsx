@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import { Container, Content, ViewCalendarCenter, ViewCalendar, Text } from "./styles";
-import { TouchableOpacityProps } from "react-native";
-import DateTimePicker from '@react-native-community/datetimepicker';
+import { Container, Content, Text } from "./styles";
+import { TouchableOpacityProps, Platform } from "react-native";
+import DateTimePicker, { DateTimePickerEvent } from '@react-native-community/datetimepicker';
 
 type Props = TouchableOpacityProps &{
-  modeCalendar?: string,
+  modeCalendar: string,
   exportDate?: any,
   exportTime?: any,
 }
@@ -12,34 +12,31 @@ type Props = TouchableOpacityProps &{
 
 export function DateCalendar({modeCalendar, exportDate, exportTime}:Props) {
 
+  const [date, setDate] = useState<Date>(new Date());
 
-  const initialDate =(new Date().getDate, new Date().getDay() + new Date().getHours())
-  const [date, setDate] = useState(new Date());
-
-  const [mode, setMode] = useState(modeCalendar || 'date');
-  
-  const onChange = (event, selectedDate) => {
+  const onChange = (event: DateTimePickerEvent, selectedDate: Date) => {
     const currentDate = selectedDate;
-    setDate(currentDate);
+    setDate(selectedDate);
 
     let tempDate = currentDate
-    if( mode !== 'time'){
-      let fDate = tempDate.getDate() + '/' + (tempDate.getMonth() +1) + '/' + tempDate.getFullYear()
-      exportDate(fDate)
+    if( modeCalendar !== 'time'){
+      const formatedDate = `${tempDate.getDate()/(tempDate.getMonth() +1)/tempDate.getFullYear()}`
+      exportDate(formatedDate)
     }
     
-    if(mode === 'time'){
+    if(modeCalendar === 'time'){
       if(tempDate.getMinutes() < 10){
-        let formatMinutes = `${ "0"+(tempDate.getMinutes())}`
-        let fTime = `${tempDate.getHours()}:${formatMinutes}`;
-        exportTime(fTime)
+        // let formatMinutes = `${ "0"+(tempDate.getMinutes())}`
+        let formatMinutes = `0${tempDate.getMinutes()}`
+        let formatedTime = `${tempDate.getHours()}:${formatMinutes}`;
+        exportTime(formatedTime)
       } else if(tempDate.getHours()< 10){
-        let formatHours = `${ "0"+(tempDate.getHours())}`
-        let fTime = `${formatHours}:${tempDate.getMinutes()}`;
-        exportTime(fTime)
+        let formatHours = `${ "0"+(tempDate.getHours())}`// todo corrigir 
+        let formatedTime = `${formatHours}:${tempDate.getMinutes()}`;
+        exportTime(formatedTime)
       }else{
-        let fTime = `${tempDate.getHours()}:${tempDate.getMinutes()}`;
-        exportTime(fTime)
+        let formatedTime = `${tempDate.getHours()}:${tempDate.getMinutes()}`;
+        exportTime(formatedTime)
       }
     }
   };
@@ -49,11 +46,11 @@ export function DateCalendar({modeCalendar, exportDate, exportTime}:Props) {
       <Text>Data</Text>
        <Content>
        <DateTimePicker
-          testID="dateTimePicker"
           value={date}
-          mode={mode}
+          locale="pt-BR"
+          mode={modeCalendar}
           is24Hour={true}
-          onChange={onChange}
+          onChange={(event, selectedDate) => onChange(event, selectedDate)}
         />
        </Content>
     </Container>

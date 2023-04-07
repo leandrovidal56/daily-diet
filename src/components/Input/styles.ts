@@ -1,5 +1,4 @@
 import { TextInput } from "react-native";
-import { TouchableOpacity } from "react-native";
 import styled from "styled-components/native";
 
 type Props = {
@@ -17,6 +16,7 @@ export const Content = styled(TextInput)<Props>`
     border-radius: 6px;
     background: ${({ theme}) => theme.COLORS.GRAY_8};
     border: 1px solid ${({ theme}) => theme.COLORS.GRAY_5};
+    padding: 15px;
 `
 
 export const Text = styled.Text`

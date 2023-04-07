@@ -29,7 +29,7 @@ export const Text = styled.Text`
     margin-top: 8px;
 `
 
-export const Date = styled.Text`
+export const Data = styled.Text`
     font-size: ${({theme}) => theme.FONT_SIZE.SM}px;
     line-height: 18.2px;
     font-weight:${({ theme }) => theme.FONT_WEIGHT.BOLD};

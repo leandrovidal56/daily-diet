@@ -2,27 +2,26 @@
 import styled from "styled-components/native";
 import { ArrowLeft } from "phosphor-react-native";
 
-export const Container = styled.View`
-    width: 100%;
-    height: 124px;
-    justify-content: center;
-    flex-direction: row;
-    align-items: center;
-    padding-top: 30px;
-    background: ${({theme }) => theme.COLORS.GREEN_LIGHT};
-`
-
 export const Header = styled.View`
     width: 100%;
     justify-content: center;
     align-items: center;
     flex-direction: row;
 `
+export const Space = styled.View`
+    width: 40px;
+`
 
-export const BackButton = styled.TouchableOpacity`
+export const Container = styled.View`
     width: 100%;
+    height: 124px;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
     padding-left: 24px;
-    position: absolute;
+    padding-top: 30px;
+    background: ${({theme }) => theme.COLORS.GREEN_LIGHT};
+
 `
 
 export const Text = styled.Text`

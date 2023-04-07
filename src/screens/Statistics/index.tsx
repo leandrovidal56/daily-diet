@@ -4,6 +4,7 @@ import { useNavigation } from "@react-navigation/native";
 import { BackButton, BackIcon, Container, Content, Percentage, Row } from "./styles";
 import { eatsGetAll } from '@storage/user/userGetEat';
 import { useEffect, useState } from "react";
+import { X } from "phosphor-react-native";
 
 
 
@@ -13,7 +14,7 @@ export function Statistics(){
     const [eatsGood, setEatsGood] = useState(0)
     const [eatsBad, setEatsBad] = useState(0)
     const [eatsPercentage, setEatsPercentage] = useState(0)
-    const [ sequence, setSequence] = useState(0)
+    const [sequence, setSequence] = useState(0)
     
     
     async function fetchEatAll() {
@@ -32,31 +33,38 @@ export function Statistics(){
     }
     async function bestSequencie(){
         const storage = await eatsGetAll();
-
         let arrayOfBest = [];
         let count = 0;
 
         storage.map(item => {
             if(item.diet) {
                 ++count
-                return;
             }
+
             if(!item.diet) {
                 arrayOfBest.push(count)
                 count = 0;
-                return;
+                // return;
             }
+
+            const insertNewRecord = arrayOfBest.slice(-1)
+            console.log(count)
+            if(insertNewRecord > count) {
+                setSequence(insertNewRecord)
+            }
+            console.log(insertNewRecord)
+            if(count > insertNewRecord){
+                arrayOfBest.push(count)
+                setSequence(count);
+            }
+           
         });
-        const insertNewRecord = arrayOfBest.slice(-1)
-        if(count >= insertNewRecord){
-            arrayOfBest.push(count)
-            setSequence(count)
-        }
     }
     
     function handleGoBack(){
         navigation.goBack()
       }
+      
     useEffect(() =>{
         fetchEatAll();
         bestSequencie();

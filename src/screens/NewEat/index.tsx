@@ -68,10 +68,11 @@ export function NewEat(){
         <Container>
             <HeaderBackButton title ="Nova Refeição"/>
             <Content>
-                <Input title="Nome"  value={eat} onChangeText={(text) => setEat(text)}/>
-                <Input title="Descrição" large value={eatDescription} onChangeText={(text) => setEatDescription(text)} />
+                <Input autoCorrect={false} title="Nome"  value={eat} onChangeText={(text) => setEat(text)}/>
+                <Input multiline={true} autoCorrect={false} title="Descrição" large value={eatDescription} numberOfLines={5} onChangeText={(text)=> setEatDescription(text)} />
                 <Row>
                     <DateCalendar 
+                      modeCalendar="date"
                       exportDate={setDate}
                     />
                     <DateCalendar 

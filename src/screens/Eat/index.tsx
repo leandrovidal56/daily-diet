@@ -5,17 +5,29 @@ import { useNavigation } from "@react-navigation/native";
 import { eatDeleteByUser } from "@storage/user/userDeleteEat";
 
 
-import { Container, Content, Date, DateText, Text, Title  } from "./styles";
+import { Container, Content, Data, DateText, Text, Title  } from "./styles";
 
-export function Eat({route}: any ){
+type Props = {
+  route: {
+    params: {
+      eat: string;
+      description: string;
+      date: string;
+      time: string;
+      diet: boolean;
+    }
+  };
+}
+
+export function Eat({ route }: Props) {
     const navigation = useNavigation();
     function handleEditEat(){
       navigation.navigate('EditEat', route.params)
     }
     async function  handleDeleteEat(){
       await eatDeleteByUser(route.params)
-      navigation.navigate('Home')
-    }
+      navigation.navigate('Home');
+    }  
 
     return (
         <Container>
@@ -25,7 +37,7 @@ export function Eat({route}: any ){
                 <Text>
                     {route.params.description}
                 </Text>
-                <Date>Data e hora</Date>
+                <Data>Data e hora</Data>
                 <DateText>{route.params.date} às {route.params.time}</DateText>
                 <Status title="dentro da dieta" good={route.params.diet}/>
             </Content>

@@ -7,7 +7,7 @@ export async function eatEditByUser(item: Object, title: string, description: st
     try {
         const storage = await eatsGetAll()
         const filtered = storage.filter(object => object.id !== item.id);        
-        const obj = { id: item.id, date: item.date, title, time: item.time, eat: title, description, diet };
+        const obj = { id: item.id, date: item.date, title, time: item.time, eat: title, description: description, diet };
         filtered.push(obj);
         await AsyncStorage.setItem(EAT_COLLECTION, JSON.stringify(filtered));
     }catch (error) {

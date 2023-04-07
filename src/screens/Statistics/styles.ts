@@ -16,11 +16,8 @@ export const Percentage = styled.View`
 `
 
 export const BackButton = styled.TouchableOpacity`
-    width: 32px;
-    height: 32px;
     padding-top: 60px;
     padding-left: 27px;
-    background-color: red;
 `
 export const BackIcon = styled(ArrowLeft).attrs(({ theme}) => ({
     size: 32,
