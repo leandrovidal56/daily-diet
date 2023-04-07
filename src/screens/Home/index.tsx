@@ -7,7 +7,7 @@ import { Header } from '@components/Header';
 import { useFocusEffect, useNavigation } from '@react-navigation/native';
 import { useCallback, useState } from 'react';
 import { eatsGetAll } from '@storage/user/userGetEat';
-import { FlatList } from 'react-native';
+import { FlatList, View } from 'react-native';
 
 type EatProps = {
   eat?: string;
@@ -21,7 +21,9 @@ type EatProps = {
 export function Home() {
 
 const [eats, setEats] = useState<EatProps[]>([])
+const [eatsGroups, setEatsGroups] = useState({})
 const [eatsPercentage, setEatsPercentage] = useState(0)
+const [dataKeys, setDataKeys] = useState([])
 
   const navigation = useNavigation();
 
@@ -39,10 +41,46 @@ const [eatsPercentage, setEatsPercentage] = useState(0)
       console.error(error)
     }
   }
+async function groupEat(){
+  const takeEat = await eatsGetAll()
+  const takeEatsByDay = await takeEat.filter(item => item.date)
+  // console.log(takeEatsByDay, 'groupEat')
+  // eats.map(item => {
+
+  //   // console.log(item.date, 'take item')
+  // })
+
+  const grouped = takeEat.reduce((acc, item) => {
+    const key = item.date;
+    // console.log(key, 'keyy');
+    if(!acc[key]){
+        acc[key] = [];
+    }
+
+    acc[key].push(item);
+
+    return acc;
+  }, {});
+  
+  setDataKeys(grouped)
+  
+  setEatsGroups(grouped)
+  console.log(dataKeys, '$$$#$');
+
+}
 
   useFocusEffect(useCallback(() => {
     fetchEatAll();
+    groupEat();
   },[eatsGetAll]))
+
+  function dataComparator(date1: any, date2: any) {
+    return new Date(date1) - new Date(date2);
+  }
+  
+  const headers = Object.keys(dataKeys).sort(dataComparator);
+
+  console.log(headers, 'take675');
   
   return (
     <Container>
@@ -54,12 +92,27 @@ const [eatsPercentage, setEatsPercentage] = useState(0)
       />
       <Text>Refeições</Text>
       <Button title='Nova refeição' onPress={handleNewEat}/>
-      <FlatList
+      {/* <FlatList
         data={eats}
         keyExtractor={(item: EatProps) => String(item.id)}
-        renderItem={({item}) => (
+        renderItem={({item}) => (   
           <Line item={item}/>
         )}
+      /> */}
+      <FlatList
+
+        data={headers}
+        keyExtractor={(item: EatProps) => String(item)}
+        renderItem={({item}) => (
+          <View>
+            <Text>{item}</Text>
+            {
+              dataKeys[item].map(i => (
+                <Line item={i}/>
+              ))
+            }
+          </View>
+          )}
       />
     </Container>
     

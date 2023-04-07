@@ -7,6 +7,7 @@ import { useFocusEffect, useNavigation } from '@react-navigation/native';
 import { eatAddByUser } from "@storage/user/userAddEat";
 import { useCallback, useEffect, useState } from "react";
 import { Container, Content, Row  } from "./styles";
+import { Keyboard } from "react-native";
 
 export function NewEat(){
   const [eat, setEat] = useState('')
@@ -20,6 +21,7 @@ export function NewEat(){
 
 
   async function handleFeedBack(){
+    console.log(date, 'take date')
     eatAddByUser(eat, eatDescription, diet, date, time)
     setEat('')
     setEatDescription('')
@@ -39,6 +41,7 @@ export function NewEat(){
   
 
   function startDateAndTime(){
+
     let startDate = new Date()
     let formatDate = startDate.getDate() + '/' + (startDate.getMonth() +1) + '/' + startDate.getFullYear()
     setDate(formatDate)
@@ -69,7 +72,7 @@ export function NewEat(){
             <HeaderBackButton title ="Nova Refeição"/>
             <Content>
                 <Input autoCorrect={false} title="Nome"  value={eat} onChangeText={(text) => setEat(text)}/>
-                <Input multiline={true} autoCorrect={false} title="Descrição" large value={eatDescription} numberOfLines={5} onChangeText={(text)=> setEatDescription(text)} />
+                <Input onSubmitEditing={()=>{Keyboard.dismiss()}} returnKeyType="send" multiline={true} autoCorrect={false} title="Descrição" large value={eatDescription} numberOfLines={2} onChangeText={(text)=> setEatDescription(text)} />
                 <Row>
                     <DateCalendar 
                       modeCalendar="date"

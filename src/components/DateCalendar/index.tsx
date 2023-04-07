@@ -14,14 +14,18 @@ export function DateCalendar({modeCalendar, exportDate, exportTime}:Props) {
 
   const [date, setDate] = useState<Date>(new Date());
 
-  const onChange = (event: DateTimePickerEvent, selectedDate: Date) => {
+  const onChange = (event: DateTimePickerEvent, selectedDate) => {
     const currentDate = selectedDate;
     setDate(selectedDate);
 
     let tempDate = currentDate
     if( modeCalendar !== 'time'){
-      const formatedDate = `${tempDate.getDate()/(tempDate.getMonth() +1)/tempDate.getFullYear()}`
+      let formatedDate = `${tempDate.getDate()+ '/' +(tempDate.getMonth() +1) + '/'+ tempDate.getFullYear()}`
       exportDate(formatedDate)
+      console.log(formatedDate, 'formatedDate')
+      let fDate = tempDate.getDate() + '/' + (tempDate.getMonth() +1) + '/' + tempDate.getFullYear()
+      console.log(fDate, 'fDate')
+      exportDate(fDate)
     }
     
     if(modeCalendar === 'time'){

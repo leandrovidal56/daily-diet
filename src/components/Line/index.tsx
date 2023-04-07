@@ -13,10 +13,13 @@ export function Line({item}: any) {
         <Container onPress={handleEditEat}>
             <Row>
                 <Time>{item.time}</Time>
+                {/* <Time>12;34</Time> */}
                 <Space>|</Space>
                 <Description numberOfLines={1} ellipsizeMode="tail">{item.eat}</Description>
+                {/* <Description numberOfLines={1} ellipsizeMode="tail">12341243</Description> */}
             </Row>
             <Marker good={item.diet} />
+            {/* <Marker good={true} /> */}
         </Container>
     )
 }
