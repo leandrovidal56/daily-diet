@@ -4,9 +4,6 @@ import { useNavigation } from "@react-navigation/native";
 import { BackButton, BackIcon, Container, Content, Percentage, Row } from "./styles";
 import { eatsGetAll } from '@storage/user/userGetEat';
 import { useEffect, useState } from "react";
-import { X } from "phosphor-react-native";
-
-
 
 export function Statistics(){
     const navigation = useNavigation();
@@ -44,7 +41,6 @@ export function Statistics(){
             if(!item.diet) {
                 arrayOfBest.push(count)
                 count = 0;
-                // return;
             }
 
             const insertNewRecord = arrayOfBest.slice(-1)

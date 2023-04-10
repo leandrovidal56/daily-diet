@@ -4,19 +4,11 @@ import { Input } from "@components/Input";
 import { Select } from "@components/Select";
 import { eatEditByUser } from "@storage/user/userEditEat";
 import { useNavigation } from "@react-navigation/native";
-import { useState, FC } from "react";
+import { useState } from "react";
 import { TouchableOpacity } from "react-native";
 
 
 import { Container, Content } from "./styles";
-
-type Props = TouchableOpacity & {
-    hour?: string;
-    title?: string;
-    description?: string;
-    diet?: boolean;
-
-}
 
 export function EditEat({ route}:any){
     const navigation = useNavigation();

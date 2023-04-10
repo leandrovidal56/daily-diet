@@ -44,15 +44,9 @@ const [dataKeys, setDataKeys] = useState([])
 async function groupEat(){
   const takeEat = await eatsGetAll()
   const takeEatsByDay = await takeEat.filter(item => item.date)
-  // console.log(takeEatsByDay, 'groupEat')
-  // eats.map(item => {
-
-  //   // console.log(item.date, 'take item')
-  // })
 
   const grouped = takeEat.reduce((acc, item) => {
     const key = item.date;
-    // console.log(key, 'keyy');
     if(!acc[key]){
         acc[key] = [];
     }
@@ -80,8 +74,6 @@ async function groupEat(){
   
   const headers = Object.keys(dataKeys).sort(dataComparator);
 
-  console.log(headers, 'take675');
-  
   return (
     <Container>
       <Header/>
@@ -92,15 +84,7 @@ async function groupEat(){
       />
       <Text>Refeições</Text>
       <Button title='Nova refeição' onPress={handleNewEat}/>
-      {/* <FlatList
-        data={eats}
-        keyExtractor={(item: EatProps) => String(item.id)}
-        renderItem={({item}) => (   
-          <Line item={item}/>
-        )}
-      /> */}
       <FlatList
-
         data={headers}
         keyExtractor={(item: EatProps) => String(item)}
         renderItem={({item}) => (
@@ -115,7 +99,6 @@ async function groupEat(){
           )}
       />
     </Container>
-    
   );
 }
 

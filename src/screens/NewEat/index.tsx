@@ -21,7 +21,6 @@ export function NewEat(){
 
 
   async function handleFeedBack(){
-    console.log(date, 'take date')
     eatAddByUser(eat, eatDescription, diet, date, time)
     setEat('')
     setEatDescription('')
