@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "dailyDiet",
-    "slug": "dailyDiet",
+    "slug": "daily-diet",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -12,7 +12,8 @@
       "backgroundColor": "#ffffff"
     },
     "updates": {
-      "fallbackToCacheTimeout": 0
+      "fallbackToCacheTimeout": 0,
+      "url": "https://u.expo.dev/1102431e-58a2-477a-a44d-18e39aa76843"
     },
     "assetBundlePatterns": [
       "**/*"
@@ -28,6 +29,15 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "1102431e-58a2-477a-a44d-18e39aa76843"
+      }
+    },
+    "owner": "leovidal",
+    "runtimeVersion": {
+      "policy": "sdkVersion"
     }
   }
 }

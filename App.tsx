@@ -1,8 +1,12 @@
-import { Home } from './src/screens/Home';
+import { ThemeProvider } from 'styled-components';
+import theme from '@theme/index';
+import { Routes } from '@routes/index';
 
 export default function App() {
-  return (
-   <Home/>
+  return (  
+    <ThemeProvider theme={theme}>
+      <Routes/>
+    </ThemeProvider>
   );
 }
 
