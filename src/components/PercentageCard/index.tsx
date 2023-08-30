@@ -15,10 +15,7 @@ export function PercentageCard({ percentage }: Props) {
   }
   const [backgroundGreen, setBackgroundGreen] = useState<boolean | null>(null);
   const [numberFormated, setNumberFormated] = useState("");
-  console.log(percentage, "take percentage");
-  if (!percentage) {
-    console.log("good");
-  }
+
   function changeBackground() {
     setNumberFormated(percentage ? `${percentage.toFixed(2)}%` : `0%`);
     if (percentage > 50) {
